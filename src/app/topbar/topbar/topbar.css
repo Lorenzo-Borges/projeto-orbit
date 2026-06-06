@@ -1,0 +1,51 @@
+.topbar {
+    height: 70px;
+    background-color: #141414;
+    border-bottom: 1px solid rgba(204, 204, 204, 0.15);
+
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+
+    padding: 0 32px;
+}
+
+.topbar {
+    height: 70px;
+    background: #141414;
+}
+
+/* Container dos links */
+.topbar > div {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Botões */
+.topbar .btn-primary {
+    text-decoration: none;
+    color: #CCCCCC;
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+
+    padding: 10px 20px;
+    border-radius: 10px;
+
+    transition: all 0.3s ease;
+}
+
+/* Hover */
+.topbar .btn-primary:hover {
+    background: linear-gradient(
+        135deg,
+        #18747A,
+        #80183B
+    );
+
+    color: #FFFFFF;
+    transform: translateY(-2px);
+
+    box-shadow: 0 4px 12px rgba(128, 24, 59, 0.3);
+}
