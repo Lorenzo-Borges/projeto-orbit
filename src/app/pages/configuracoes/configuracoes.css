@@ -1,0 +1,111 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+* {
+    font-family: 'Inter', sans-serif;
+}/*
+ Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Sidebar */
+.sidebar {
+    width: 260px;
+    height: 100vh;
+    background-color: #141414;
+    display: flex;
+    flex-direction: column;
+    padding: 24px 16px;
+    border-right: 1px solid rgba(204, 204, 204, 0.15);
+}
+
+/* Logo */
+.logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100px;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    width: 140px;
+    max-width: 100%;
+}
+
+/* Container dos links */
+.sidebar > div:last-child {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* Links */
+.btn-primary {
+    text-decoration: none;
+    color: #CCCCCC;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.sidebar {
+    width: 260px;
+    background: #141414;
+}
+
+/* Hover */
+
+.btn-primary:hover {
+    background: linear-gradient(
+        90deg,
+        #18747A 0%,
+        #80183B 100%
+    );
+
+    color: #FFFFFF;
+    transform: translateX(4px);
+}
+
+/* Página ativa */
+.btn-primary.router-link-active,
+.btn-primary.active {
+    background-color: #80183B;
+    color: #FFFFFF;
+    font-weight: 600;
+}
+
+/* Linha lateral do item ativo */
+.btn-primary.router-link-active::before,
+.btn-primary.active::before {
+    content: "";
+    position: absolute;
+    left: -16px;
+    top: 10%;
+    height: 80%;
+    width: 4px;
+    background-color: #18747A;
+    border-radius: 0 4px 4px 0;
+}
+
+/* Texto secundário */
+.sidebar small {
+    color: #A8A8A8;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    .sidebar {
+        width: 220px;
+    }
+
+    .btn-primary {
+        padding: 12px 14px;
+        font-size: 14px;
+    }
+}
