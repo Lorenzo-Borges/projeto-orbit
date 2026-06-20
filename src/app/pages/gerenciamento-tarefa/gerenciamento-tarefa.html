@@ -1,0 +1,70 @@
+<div class="tarefas-container">
+
+    <h2>Gerenciamento de Tarefas</h2>
+
+    <form class="formulario-tarefas">
+
+        <h3>Cadastrar Nova Tarefa</h3>
+
+        <div class="campo">
+            <label for="tarefa">Tarefa</label>
+            <input
+                id="tarefa"
+                type="text"
+                placeholder="Digite a tarefa"
+            >
+        </div>
+
+        <div class="campo">
+            <label for="limite-data">Data Limite</label>
+            <input
+                id="limite-data"
+                type="date"
+            >
+        </div>
+
+        <div class="campo">
+            <label for="status">Status</label>
+            <select id="status">
+                <option value="pendente">Pendente</option>
+                <option value="andamento">Em andamento</option>
+                <option value="concluida">Concluída</option>
+            </select>
+        </div>
+
+        <button type="submit">
+            Adicionar Tarefa
+        </button>
+
+    </form>
+
+    <hr>
+
+    <div class="lista-tarefas">
+
+        <h3>Minhas Tarefas</h3>
+
+        <ul>
+
+            <li class="item-tarefa">
+
+                <div class="info-tarefa">
+                    <strong>Lavar louça</strong>
+                    <p>Data limite: 12/08/2026</p>
+                    <span class="status pendente">
+                        Pendente
+                    </span>
+                </div>
+
+                <div class="acoes-tarefa">
+                    <button>Editar</button>
+                    <button>Excluir</button>
+                </div>
+
+            </li>
+
+        </ul>
+
+    </div>
+
+</div>

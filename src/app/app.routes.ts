@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {
-    path: 'metas',
-    loadComponent: () => import('./pages/metas/metas').then(x => x.MetasComponent)
-  },
+    {
+        path: 'metas', loadComponent: () => 
+            import('./pages/metas/metas').then(x => x.MetasComponent)
+    },
     {
         path: "login-cadastro", loadComponent: () =>
             import('./pages/login-cadastro/login-cadastro').then(x => x.LoginCadastro)
@@ -14,10 +14,33 @@ export const routes: Routes = [
         path: "configuracao", loadComponent: () =>
             import('./pages/configuracao/configuracao').then(x => x.Configuracao)
     },
+<<<<<<< HEAD
     
     {
         path: "landing-page", loadComponent: () =>
             import('./pages/landing-page/landing-page').then(x => x.LandingPage)
+=======
+
+    {
+        path: "acessibilidade", loadComponent: () =>
+            import('./pages/acessibilidade/acessibilidade').then(x => x.Acessibilidade)
+    },
+
+    {
+        path: "conta", loadComponent: () =>
+            import('./pages/conta/conta').then(x => x.Conta)
+    },
+
+
+    {
+        path: "gerenciador", loadComponent: () =>
+            import('./pages/gerenciamento-tarefa/gerenciamento-tarefa').then(x => x.GerenciamentoTarefa)
+    },
+
+    {
+        path: "conquistas", loadComponent: () =>
+            import('./pages/conquistas/conquistas').then(x => x.Conquistas)
+>>>>>>> 9eddd3b364cec6b8dc0a8ab8f6cfba7bda100935
     }
 ];
 
