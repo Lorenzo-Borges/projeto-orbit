@@ -1,0 +1,52 @@
+<div class="financeiro-container">
+    <h2>Gestão financeira</h2>
+
+    <div class="financeiro-resumo">
+        <div class="card-financeiro receita">
+            <small>Receita</small>
+            <strong>{{totalReceitas | currency:'BRL' }}</strong>
+        </div>
+
+        <div class="card-financeiro despesa">
+            <small>Despesas</small>
+            <strong>{{totalDespesas | currency:'BRL' }}</strong>
+        </div>
+
+        <div class="card-financeiro saldo">
+            <small>Saldo Disponivel</small>
+            <strong>{{saldoFinanceiro | currency:'BRL' }}</strong>
+        </div>
+    </div>
+
+    <hr />
+
+    <div class="financeiro-conteudo">
+        <div class="financeiro-lista">
+            <h3>Transações Recentes</h3>
+            <ul>
+                @for (item of listaFinanceiro; track item.id) {
+                <li class="item-financeiro">
+                    <div>
+                        <strong>{{ item.descricao }}</strong>
+                        <p>{{item.valor}}</p>
+                        <small>{{item.dataVencimento | date:'dd/MM/yyyy':'UTC' }}</small>
+                    </div>
+
+                    <div class="valor-financeiro">
+                        <span [class.texto-receita]="item.tipo === 'RECEITA'" [class.texto]="item.tipo === 'DESPESA'">
+                            {{ item.tipo === 'RECEITA' ? '+' : '-' }} {{ item.valor | currency:'BRL'}}
+                        </span>
+                    </div>
+                </li>
+                }
+            </ul>
+        </div>
+
+        <div class="financeiro-grafico">
+            <h3>Historico</h3>
+            <div class="grafico-placeholder">
+                <p>Grafico do historico financeiro aqui</p>
+            </div>
+        </div>
+    </div>
+</div>
