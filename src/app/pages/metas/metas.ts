@@ -1,28 +1,56 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { MetasService } from '../../services/metas.service';
 
 @Component({
   selector: 'app-metas',
-  imports: [RouterLink],
+  standalone: true,
+  imports: [RouterLink, FormsModule, DatePipe],
   templateUrl: './metas.html',
   styleUrl: './metas.css',
 })
 export class MetasComponent {
+  private metasService = inject(MetasService);
+
   nomeMeta: string = '';
   descricaoMeta: string = '';
   dataVencimento: string = '';
-  
+
+  get listaMetas() {
+    return this.metasService.getMetas();
+  }
+
   adicionarMeta() {
-    
-    // Lógica para adicionar uma nova meta
-    
+    if (!this.nomeMeta.trim()) return;
+
+    this.metasService.adicionar({
+      nome: this.nomeMeta,
+      descricao: this.descricaoMeta,
+      dataVencimento: this.dataVencimento
+    });
+
+    this.nomeMeta = '';
+    this.descricaoMeta = '';
+    this.dataVencimento = '';
   }
 
   editarMeta(id: number) {
-    // Lógica para editar uma meta existente
+    const meta = this.listaMetas.find(m => m.id === id);
+    if (meta) {
+      this.nomeMeta = meta.nome;
+      this.descricaoMeta = meta.descricao;
+      this.dataVencimento = meta.dataVencimento;
+      
+      this.excluirMeta(id); 
+    }
   }
 
   excluirMeta(id: number) {
-    // Lógica para excluir uma meta
+  const confirmacao = confirm("Tem certeza que deseja excluir esta meta? Esta ação não pode ser desfeita.");
+  if (confirmacao) {
+    this.metasService.excluir(id); 
   }
+}
 }

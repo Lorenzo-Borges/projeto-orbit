@@ -1,35 +1,58 @@
-<div>
-    <h1>Metas</h1>
-    <table>
-        <thead>
-            <tr>
-                <td>Nome</td>
-                <td>Descrição</td>
-                <td>Ações</td>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>Meta 1</td>
-                <td>Descrição da Meta 1</td>
-                <td>
-                    <button class="btn-primary" (click)="editarMeta()">Editar Meta</button>
-                    <button class="btn-primary" (click)="excluirMeta()">Remover Meta</button>
-                </td>
-            </tr>
-            <tr>
-                <td>Meta 2</td>
-                <td>Descrição da Meta 2</td>
-                <td>
-                    <button class="btn-primary" (click)="editarMeta()">Editar Meta</button>
-                    <button class="btn-primary" (click)="excluirMeta()">Remover Meta</button>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<div class="metas-container">
+    <h2>Gestão de Metas</h2>
 
-<div>
-    <button class="btn-primary" (click)="adicionarMeta()">Adicionar Meta</button>
-   
+    <form (ngSubmit)="adicionarMeta()" class="formulario-metas">
+        <div class="campo">
+            <label for="nome">Nome da Meta:</label>
+            <input type="text" id="nome" name="nome" [(ngModel)]="nomeMeta" placeholder="Ex: Aprender Java"
+                required />
+        </div>
+
+        <div class="campo">
+            <label for="descricao">Descrição:</label>
+            <textarea id="descricao" name="descricao" [(ngModel)]="descricaoMeta"
+                placeholder="Detalhes adicionais..."></textarea>
+        </div>
+
+        <div class="campo">
+            <label for="vencimento">Data Limite:</label>
+            <input type="date" id="vencimento" name="vencimento" [(ngModel)]="dataVencimento" />
+        </div>
+
+        <button type="submit" class="btn-primary" [disabled]="!nomeMeta">
+            Adicionar Meta
+        </button>
+    </form>
+
+    <hr />
+
+    <div class="lista-metas">
+        <h3>Minhas Metas</h3>
+
+        @if (listaMetas.length === 0) {
+        <p style="color: #A8A8A8;">Você ainda não tem metas cadastradas. Que tal adicionar uma?</p>
+        } @else {
+        <ul>
+            @for (meta of listaMetas; track meta.id) {
+            <li class="item-meta">
+                <div class="info-meta">
+                    <strong>{{ meta.nome }}</strong>
+                    <p>{{ meta.descricao }}</p>
+
+                    <small>Vencimento: {{ meta.dataVencimento | date:'dd/MM/yyyy':'UTC' }}</small>
+                </div>
+
+                <div class="acoes-meta">
+                    <button (click)="editarMeta(meta.id)">Editar</button>
+                    <button (click)="excluirMeta(meta.id)">Excluir</button>
+                </div>
+            </li>
+            }
+        </ul>
+        }
+    </div>
+
+    <div style="margin-top: 32px;">
+        <a routerLink="/" class="btn-primary" style="display: inline-block;">Voltar para o Início</a>
+    </div>
 </div>

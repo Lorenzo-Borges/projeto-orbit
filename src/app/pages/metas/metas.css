@@ -1,0 +1,217 @@
+/* Aplica o fundo escuro em toda a página de metas e define a fonte padrão */
+:host {
+    display: block;
+    min-height: 100vh;
+    background-color: #0a0a0a; /* Fundo levemente mais escuro que os cards (#141414) para gerar contraste */
+    font-family: 'Inter', sans-serif;
+}
+
+/* Container principal da página */
+.metas-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 32px 24px;
+    color: #CCCCCC;
+    font-family: 'Inter', sans-serif; /* Força a fonte no container */
+}
+
+.metas-container h2 {
+    font-family: 'Inter', sans-serif; /* Força a fonte no título da página */
+    color: #FFFFFF;
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 24px;
+}
+
+/* Estilos do Formulário */
+.formulario-metas {
+    background-color: #141414;
+    padding: 24px;
+    border-radius: 10px;
+    border: 1px solid rgba(204, 204, 204, 0.15);
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.campo {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.campo label {
+    font-family: 'Inter', sans-serif; /* Força a fonte nos títulos (labels) dos formulários */
+    font-size: 14px;
+    font-weight: 500;
+    color: #A8A8A8;
+}
+
+.campo input,
+.campo textarea {
+    font-family: 'Inter', sans-serif;
+    background-color: transparent;
+    border: 1px solid rgba(204, 204, 204, 0.15);
+    color: #FFFFFF;
+    padding: 12px 16px;
+    border-radius: 8px;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.3s ease;
+}
+
+.campo textarea {
+    resize: vertical;
+    min-height: 80px;
+}
+
+/* Foco nos inputs usando a cor de destaque do seu tema */
+.campo input:focus,
+.campo textarea:focus {
+    border-color: #18747A;
+}
+
+/* Botão de Adicionar (Usando sua paleta e gradiente) */
+.formulario-metas button[type="submit"] {
+    font-family: 'Inter', sans-serif;
+    background-color: #80183B;
+    color: #FFFFFF;
+    border: none;
+    padding: 14px 18px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 8px;
+}
+
+.formulario-metas button[type="submit"]:hover:not(:disabled) {
+    background: linear-gradient(90deg, #18747A 0%, #80183B 100%);
+    transform: translateY(-2px);
+}
+
+.formulario-metas button[type="submit"]:disabled {
+    background-color: #2a2a2a;
+    color: #666666;
+    cursor: not-allowed;
+}
+
+hr {
+    border: 0;
+    height: 1px;
+    background: rgba(204, 204, 204, 0.15);
+    margin: 32px 0;
+}
+
+/* Listagem de Metas */
+
+.lista-metas h3 {
+    font-family: 'Inter', sans-serif; /* Força a fonte no título da lista */
+    color: #FFFFFF;
+    font-size: 20px;
+    font-weight: 600;
+    margin-bottom: 20px;
+}
+
+.lista-metas ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.item-meta {
+    background-color: #141414;
+    border: 1px solid rgba(204, 204, 204, 0.15);
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: all 0.3s ease;
+}
+
+.item-meta:hover {
+    border-color: rgba(204, 204, 204, 0.3);
+}
+
+.info-meta strong {
+    color: #FFFFFF;
+    font-size: 16px;
+    font-weight: 600;
+    display: block;
+    margin-bottom: 4px;
+}
+
+.info-meta p {
+    color: #CCCCCC;
+    font-size: 14px;
+    margin-bottom: 8px;
+}
+
+.info-meta small {
+    color: #A8A8A8;
+    font-size: 12px;
+}
+
+/* Botões de Ação na Lista (Editar / Excluir) */
+.acoes-meta {
+    display: flex;
+    gap: 8px;
+}
+
+.acoes-meta button {
+    font-family: 'Inter', sans-serif;
+    background-color: transparent;
+    border: 1px solid rgba(204, 204, 204, 0.15);
+    color: #CCCCCC;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.acoes-meta button:hover {
+    color: #FFFFFF;
+}
+
+/* Estilo específico pro Editar usando o azul/verde do gradiente */
+.acoes-meta button:first-child:hover {
+    background-color: #18747A;
+    border-color: #18747A;
+}
+
+/* Estilo específico pro Excluir usando o vermelho do gradiente */
+.acoes-meta button:last-child:hover {
+    background-color: #80183B;
+    border-color: #80183B;
+}
+
+/* Link de Voltar */
+a[routerLink] {
+    color: #A8A8A8;
+    text-decoration: none;
+    font-size: 14px;
+    transition: color 0.3s ease;
+}
+
+a[routerLink]:hover {
+    color: #FFFFFF;
+}
+
+/* Responsividade Básica */
+@media (max-width: 600px) {
+    .item-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .acoes-meta {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
