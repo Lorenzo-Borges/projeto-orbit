@@ -1,0 +1,71 @@
+:host {
+display: block;
+min-height: 100vh;
+background-color: #0a0a0a;
+font-family: 'Inter', sans-serif;
+}
+
+.conquistas-container {
+max-width: 900px;
+margin: 0 auto;
+padding: 32px 24px;
+}
+
+.conquistas-container h1 {
+color: #FFFFFF;
+font-size: 28px;
+font-weight: 600;
+margin-bottom: 32px;
+}
+
+.conquista-card {
+background-color: #141414;
+border: 1px solid rgba(204, 204, 204, 0.15);
+border-radius: 12px;
+padding: 20px;
+margin-bottom: 16px;
+transition: all 0.3s ease;
+cursor: pointer;
+}
+
+.conquista-card:hover {
+border-color: #18747A;
+transform: translateY(-3px);
+box-shadow: 0 6px 20px rgba(24, 116, 122, 0.15);
+}
+
+.conquista-card h2 {
+color: #FFFFFF;
+font-size: 18px;
+font-weight: 600;
+margin-bottom: 10px;
+}
+
+.conquista-card h3 {
+color: #FFFFFF;
+font-size: 18px;
+font-weight: 600;
+margin-bottom: 10px;
+}
+
+
+.conquista-card p {
+color: #CCCCCC;
+font-size: 14px;
+line-height: 1.6;
+}
+
+@media (max-width: 600px) {
+.conquistas-container {
+padding: 24px 16px;
+}
+
+.conquista-card {
+    padding: 16px;
+}
+
+.conquista-card h2 {
+    font-size: 16px;
+}
+
+}
