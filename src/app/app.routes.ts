@@ -23,6 +23,13 @@ export const routes: Routes = [
     {
         path: "conta", loadComponent: () =>
             import('./pages/conta/conta').then(x => x.Conta)
+    },
+
+
+    {
+        path: "gerenciador", loadComponent: () =>
+            import('./pages/gerenciamento-tarefa/gerenciamento-tarefa').then(x => x.GerenciamentoTarefa)
     }
+
 ];
 
