@@ -29,8 +29,6 @@ export const routes: Routes = [
     {
         path: "gerenciador", loadComponent: () =>
             import('./pages/gerenciamento-tarefa/gerenciamento-tarefa').then(x => x.GerenciamentoTarefa)
-    }
-
     },
 
     {
