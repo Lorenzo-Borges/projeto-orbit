@@ -5,6 +5,7 @@ export const routes: Routes = [
         path: 'metas', loadComponent: () => 
             import('./pages/metas/metas').then(x => x.MetasComponent)
     },
+    
     {
         path: "login-cadastro", loadComponent: () =>
             import('./pages/login-cadastro/login-cadastro').then(x => x.LoginCadastro)
@@ -14,12 +15,11 @@ export const routes: Routes = [
         path: "configuracao", loadComponent: () =>
             import('./pages/configuracao/configuracao').then(x => x.Configuracao)
     },
-<<<<<<< HEAD
     
     {
         path: "landing-page", loadComponent: () =>
             import('./pages/landing-page/landing-page').then(x => x.LandingPage)
-=======
+    },
 
     {
         path: "acessibilidade", loadComponent: () =>
@@ -40,7 +40,6 @@ export const routes: Routes = [
     {
         path: "conquistas", loadComponent: () =>
             import('./pages/conquistas/conquistas').then(x => x.Conquistas)
->>>>>>> 9eddd3b364cec6b8dc0a8ab8f6cfba7bda100935
-    }
+    },
 ];
 

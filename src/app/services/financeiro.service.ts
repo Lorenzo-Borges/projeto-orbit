@@ -19,7 +19,7 @@ export class FinanceiroService {
 
     constructor() { }
 
-    adicionar(itam: Omit<Financeiro, 'id'>) {
+    adicionar(item: Omit<Financeiro, 'id'>) {
         const novoItem: Financeiro = {
             ...item,
             id: Date.now()
