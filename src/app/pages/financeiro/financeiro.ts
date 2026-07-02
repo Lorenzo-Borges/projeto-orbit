@@ -1,43 +1,89 @@
-import { DatePipe, CurrencyPipe } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-
-export interface Financeiro {
-    id: number;
-    descricao: string;
-    valor: number;
-    dataVencimento: string;
-    status: 'PAGO' | 'PENDENTE';
-    tipo: 'RECEITA' | 'DESPESA';
-}
-
+import { DatePipe, CurrencyPipe } from '@angular/common';
+import { FinanceiroService, Financeiro } from '../../services/financeiro.service';
 
 @Component({
   selector: 'app-financeiro',
   standalone: true,
   imports: [FormsModule, DatePipe, CurrencyPipe],
   templateUrl: './financeiro.html',
-  styleUrl: './financeiro.css',
+  styleUrl: './financeiro.css'
 })
+export class FinanceiroComponent implements OnInit {
+  listaFinanceiro: Financeiro[] = [];
 
-export class FinanceiroComponent {
+  // Variáveis do Formulário
+  idEdicao: number | null = null;
+  descricaoTransacao: string = '';
+  valorTransacao: number | null = null;
+  dataTransacao: string = '';
+  tipoTransacao: 'RECEITA' | 'DESPESA' = 'DESPESA';
+  statusTransacao: 'PAGO' | 'PENDENTE' = 'PENDENTE';
 
-  listaFinanceiro: Financeiro[] = [
-    { id: 1, descricao: 'Salario mensal', valor: 2500, dataVencimento: '2026-06-05', status: 'PAGO', tipo: 'RECEITA' },
-    { id: 2, descricao: 'Aluguel', valor: 1500, dataVencimento: '2026-06-10', status: 'PENDENTE', tipo: 'DESPESA' },
-    { id: 2, descricao: 'Internet', valor: 150, dataVencimento: '2026-06-11', status: 'PENDENTE', tipo: 'DESPESA' }
-  ];
+  constructor(private financeiroService: FinanceiroService) {}
 
+  ngOnInit() {
+    this.financeiroService.financeiro$.subscribe(dados => {
+      this.listaFinanceiro = dados;
+    });
+  }
+
+  // Lógica do CRUD
+  salvarTransacao() {
+    if (!this.descricaoTransacao || !this.valorTransacao || !this.dataTransacao) return;
+
+    const transacao = {
+      descricao: this.descricaoTransacao,
+      valor: this.valorTransacao,
+      dataVencimento: this.dataTransacao,
+      tipo: this.tipoTransacao,
+      status: this.statusTransacao
+    };
+
+    if (this.idEdicao) {
+      this.financeiroService.atualizar({ id: this.idEdicao, ...transacao });
+    } else {
+      this.financeiroService.adicionar(transacao);
+    }
+    
+    this.limparFormulario();
+  }
+
+  editarTransacao(item: Financeiro) {
+    this.idEdicao = item.id;
+    this.descricaoTransacao = item.descricao;
+    this.valorTransacao = item.valor;
+    this.dataTransacao = item.dataVencimento;
+    this.tipoTransacao = item.tipo;
+    this.statusTransacao = item.status;
+  }
+
+  excluirTransacao(id: number) {
+    if (confirm("Tem certeza que deseja excluir esta transação?")) {
+      this.financeiroService.excluir(id);
+    }
+  }
+
+  limparFormulario() {
+    this.idEdicao = null;
+    this.descricaoTransacao = '';
+    this.valorTransacao = null;
+    this.dataTransacao = '';
+    this.tipoTransacao = 'DESPESA';
+    this.statusTransacao = 'PENDENTE';
+  }
+
+  // Cálculos reativos (atualizam automaticamente quando a lista muda)
   get totalReceitas(): number {
-    return this.listaFinanceiro.filter(item => item.tipo === 'RECEITA').reduce((acc, item) => acc + item.valor, 0);
+    return this.listaFinanceiro.filter(i => i.tipo === 'RECEITA').reduce((acc, i) => acc + i.valor, 0);
   }
 
   get totalDespesas(): number {
-    return this.listaFinanceiro.filter(item => item.tipo === 'DESPESA').reduce((acc, item) => acc + item.valor, 0);
+    return this.listaFinanceiro.filter(i => i.tipo === 'DESPESA').reduce((acc, i) => acc + i.valor, 0);
   }
 
   get saldoFinanceiro(): number {
     return this.totalReceitas - this.totalDespesas;
   }
 }
-

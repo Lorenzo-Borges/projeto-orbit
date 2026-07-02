@@ -1,52 +1,95 @@
 <div class="financeiro-container">
-    <h2>Gestão financeira</h2>
+  <h2>Gestão Financeira</h2>
 
-    <div class="financeiro-resumo">
-        <div class="card-financeiro receita">
-            <small>Receita</small>
-            <strong>{{totalReceitas | currency:'BRL' }}</strong>
-        </div>
-
-        <div class="card-financeiro despesa">
-            <small>Despesas</small>
-            <strong>{{totalDespesas | currency:'BRL' }}</strong>
-        </div>
-
-        <div class="card-financeiro saldo">
-            <small>Saldo Disponivel</small>
-            <strong>{{saldoFinanceiro | currency:'BRL' }}</strong>
-        </div>
+  <div class="financeiro-resumo">
+    <div class="card-financeiro receita">
+      <small>Receitas</small><br>
+      <strong>{{ totalReceitas | currency:'BRL' }}</strong>
     </div>
-
-    <hr />
-
-    <div class="financeiro-conteudo">
-        <div class="financeiro-lista">
-            <h3>Transações Recentes</h3>
-            <ul>
-                @for (item of listaFinanceiro; track item.id) {
-                <li class="item-financeiro">
-                    <div>
-                        <strong>{{ item.descricao }}</strong>
-                        <p>{{item.valor}}</p>
-                        <small>{{item.dataVencimento | date:'dd/MM/yyyy':'UTC' }}</small>
-                    </div>
-
-                    <div class="valor-financeiro">
-                        <span [class.texto-receita]="item.tipo === 'RECEITA'" [class.texto]="item.tipo === 'DESPESA'">
-                            {{ item.tipo === 'RECEITA' ? '+' : '-' }} {{ item.valor | currency:'BRL'}}
-                        </span>
-                    </div>
-                </li>
-                }
-            </ul>
-        </div>
-
-        <div class="financeiro-grafico">
-            <h3>Historico</h3>
-            <div class="grafico-placeholder">
-                <p>Grafico do historico financeiro aqui</p>
-            </div>
-        </div>
+    <div class="card-financeiro despesa">
+      <small>Despesas</small><br>
+      <strong>{{ totalDespesas | currency:'BRL' }}</strong>
     </div>
+    <div class="card-financeiro saldo">
+      <small>Saldo Disponível </small>
+      <strong>{{ saldoFinanceiro | currency:'BRL' }}</strong>
+    </div>
+  </div>
+
+  <hr />
+
+  <div class="financeiro-conteudo">
+    <div class="financeiro-lista-container">
+      
+      <form (ngSubmit)="salvarTransacao()" class="formulario-financeiro">
+        <h3>{{ idEdicao ? 'Editar Transação' : 'Nova Transação' }}</h3>
+        
+        <div class="grid-form">
+          <div class="campo">
+            <label class="input-label">Descrição</label>
+            <input class="input-field" type="text" [(ngModel)]="descricaoTransacao" name="descricao" required placeholder="Ex: Conta de Luz">
+          </div>
+          <div class="campo">
+            <label class="input-label">Valor (R$)</label>
+            <input class="input-field" type="number" [(ngModel)]="valorTransacao" name="valor" required placeholder="Ex: 150.00">
+          </div>
+        </div>
+
+        <div class="grid-form">
+          <div class="campo">
+            <label class="input-label">Data</label>
+            <input class="input-field" type="date" [(ngModel)]="dataTransacao" name="data" required>
+          </div>
+          <div class="campo">
+            <label class="input-label">Tipo</label>
+            <select class="input-field" [(ngModel)]="tipoTransacao" name="tipo">
+              <option value="RECEITA">Receita (+)</option>
+              <option value="DESPESA">Despesa (-)</option>
+            </select>
+          </div>
+          <div class="campo">
+            <label class="input-label">Status</label>
+            <select class="input-field" [(ngModel)]="statusTransacao" name="status">
+              <option value="PAGO">Pago</option>
+              <option value="PENDENTE">Pendente</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="acoes-form">
+          <button type="submit" class="btn btn-primary" [disabled]="!descricaoTransacao || !valorTransacao || !dataTransacao">
+            {{ idEdicao ? 'Atualizar' : 'Adicionar' }}
+          </button>
+          @if (idEdicao) {
+            <button type="button" class="btn btn-secondary" (click)="limparFormulario()">Cancelar</button>
+          }
+        </div>
+      </form>
+
+      <div class="lista-itens">
+        <h3>Transações Recentes</h3>
+        <ul>
+          @for (item of listaFinanceiro; track item.id) {
+            <li class="item-financeiro">
+              <div class="info-principal">
+                <strong>{{ item.descricao }}</strong><br>
+                <small>{{ item.dataVencimento | date:'dd/MM/yyyy':'UTC' }} | <span class="badge">{{ item.status }}</span></small>
+              </div>
+              
+              <div class="info-valores-acoes">
+                <span [class.texto-receita]="item.tipo === 'RECEITA'" [class.texto-despesa]="item.tipo === 'DESPESA'">
+                  {{ item.tipo === 'RECEITA' ? '+' : '-' }} {{ item.valor | currency:'BRL' }}
+                </span>
+                
+                <div class="acoes-lista">
+                  <button class="btn btn-secondary" (click)="editarTransacao(item)">Editar</button>
+                  <button class="btn btn-secondary" (click)="excluirTransacao(item.id)">Excluir</button>
+                </div>
+              </div>
+            </li>
+          }
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
