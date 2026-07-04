@@ -22,7 +22,6 @@ export class ConquistasService {
         { id: 7, titulo: 'Poupador', descricao: 'Já dá para começar a sentir a mudança de vida.', desbloqueada: false },
         { id: 8, titulo: 'Mão de Vaca', descricao: 'Agora é hora de resistir às tentações.', desbloqueada: false },
         { id: 9, titulo: 'Tio Patinhas', descricao: 'Parabéns, poucos chegam tão longe.', desbloqueada: false },
-        { id: 10, titulo: 'Toque de Midas', descricao: 'Você é um verdadeiro poupador. Incrível!', desbloqueada: false }
-
+        { id: 10, titulo: 'Toque de Midas', descricao: 'Você é um verdadeiro poupador. Incrível!', desbloqueada: false },
     ];
 }
