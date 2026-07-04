@@ -1,70 +1,14 @@
-<div class="top-text">
-    <h1>Agendas</h1>
-    <p>Visualize seus compromissos e planeje seu dia.</p>
+<div class="agenda-container">
+
+    <div class="top-text">
+        <h1>Agendas</h1>
+        <p>Visualize seus compromissos e planeje seu dia.</p>
+    </div>
+
+    <div class="calendario-card">
+
+        <full-calendar [options]="calendarOptions"></full-calendar>
+
+    </div>
+
 </div>
-
-<div class="top-text-right">
-    <h2>Hoje</h2>
-
-    <button class="seta-left">
-        <i class="fa-solid fa-angle-left"></i>
-    </button>
-    <button class="seta-right">
-        <i class="fa-solid fa-angle-right"></i>
-    </button>
-    <button onclick="newEvent()">
-        + Novo evento
-    </button>
-</div>
-
-<!--import { Component } from '@angular/core';
-import { CalendarOptions } from '@fullcalendar/core';
-
-import dayGridPlugin from '@fullcalendar/daygrid';
-import timeGridPlugin from '@fullcalendar/timegrid';
-import interactionPlugin from '@fullcalendar/interaction';
-import listPlugin from '@fullcalendar/list';
-
-@Component({
-  selector: 'app-calendario',
-  templateUrl: './calendario.html'
-})
-export class CalendarioComponent {
-
-  calendarOptions: CalendarOptions = {
-    plugins: [
-      dayGridPlugin,
-      timeGridPlugin,
-      interactionPlugin,
-      listPlugin
-    ],
-
-    initialView: 'dayGridMonth',
-
-    editable: true,
-
-    selectable: true,
-
-    weekends: true,
-
-    headerToolbar: {
-      left: 'prev,next today',
-      center: 'title',
-      right: 'dayGridMonth,timeGridWeek,timeGridDay,listWeek'
-    },
-
-    events: [
-      {
-        title: 'Reunião',
-        date: '2026-07-05',
-        color: '#2563eb'
-      },
-      {
-        title: 'Consulta',
-        date: '2026-07-08',
-        color: '#16a34a'
-      }
-    ]
-  };
-
-}-->
