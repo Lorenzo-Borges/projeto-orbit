@@ -1,33 +1,42 @@
-/* Reset básico e Fonte Global */
+
+/* ===========================
+   RESET
+=========================== */
+
 * {
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /*  */
+    box-sizing: border-box;
     font-family: 'Inter', sans-serif;
 }
 
-/* NOVO: Contêiner Principal da Aplicação 
-  (Envolva sua <app-sidebar> e seu <router-outlet> com uma div que use esta classe)
-*/
+/* ===========================
+   APP LAYOUT
+=========================== */
+
 .app-layout {
     display: flex;
     min-height: 100vh;
-    background-color: #0a0a0a; /* Mantém o fundo padrão de toda a página */
+    background-color: var(--bg);
 }
 
-/* Sidebar Corrigida */
+/* ===========================
+   SIDEBAR
+=========================== */
+
 .sidebar {
     width: 260px;
-    min-height: 100vh; /* Substitui o height: 100vh para permitir que cresça com a página */
-    background-color: #141414; /* [cite: 105] */
+    min-height: 100vh;
+    background-color: var(--sidebar);
     display: flex;
     flex-direction: column;
     padding: 24px 16px;
-    border-right: 1px solid rgba(204, 204, 204, 0.15);
-    flex-shrink: 0; /* Evita que a sidebar seja "espremida" pelo conteúdo principal */
+    border-right: 1px solid var(--border);
+    flex-shrink: 0;
 }
 
-/* Logo */
+/* LOGO */
+
 .logo {
     display: flex;
     justify-content: center;
@@ -41,46 +50,47 @@
     max-width: 100%;
 }
 
-/* Container dos links */
+/* LINKS */
+
 .sidebar > div:last-child {
     display: flex;
     flex-direction: column;
     gap: 8px;
 }
 
-/* Links (Botões) */
+/* BOTÕES */
+
 .btn-primary {
     text-decoration: none;
-    color: #CCCCCC;
+    color: var(--text-secondary);
     padding: 14px 18px;
     border-radius: 10px;
     font-size: 15px;
     font-weight: 500;
     transition: all 0.3s ease;
     position: relative;
-    display: block; /* Garante que o link se comporte corretamente */
+    display: block;
 }
 
-/* Hover */
+/* HOVER */
+
 .btn-primary:hover {
-    background: linear-gradient(
-        90deg,
-        #18747A 0%,
-        #80183B 100%
-    );
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     color: #FFFFFF;
     transform: translateX(4px);
 }
 
-/* Página ativa */
+/* ATIVO */
+
 .btn-primary.router-link-active,
 .btn-primary.active {
-    background-color: #80183B;
+    background-color: var(--secondary);
     color: #FFFFFF;
     font-weight: 600;
 }
 
-/* Linha lateral do item ativo */
+/* BARRA ATIVA */
+
 .btn-primary.router-link-active::before,
 .btn-primary.active::before {
     content: "";
@@ -89,34 +99,39 @@
     top: 10%;
     height: 80%;
     width: 4px;
-    background-color: #18747A;
+    background-color: var(--primary);
     border-radius: 0 4px 4px 0;
 }
 
-/* Texto secundário */
+/* TEXTO SECUNDÁRIO */
+
 .sidebar small {
-    color: #A8A8A8;
+    color: var(--text-secondary);
 }
 
-/* Conteúdo Principal (Onde vai renderizar a página de Metas) */
+/* CONTEÚDO PRINCIPAL */
+
 .conteudo-principal {
-    flex: 1; /* Faz o conteúdo ocupar todo o espaço restante ao lado da sidebar */
+    flex: 1;
     width: 100%;
 }
 
-/* Responsividade Aprimorada */
+/* ===========================
+   RESPONSIVO
+=========================== */
+
 @media (max-width: 768px) {
-    /* No mobile, o layout deixa de ser lado a lado e passa a ser empilhado (coluna) */
+
     .app-layout {
         flex-direction: column;
     }
 
     .sidebar {
-        width: 100%; /* A sidebar ocupa a tela toda horizontalmente */
-        min-height: auto; /* Remove a exigência da altura total da tela */
+        width: 100%;
+        min-height: auto;
         height: auto;
         border-right: none;
-        border-bottom: 1px solid rgba(204, 204, 204, 0.15); /* A borda vai para baixo */
+        border-bottom: 1px solid var(--border);
         padding: 16px;
     }
 
@@ -130,8 +145,7 @@
         font-size: 14px;
     }
 
-    /* Remove o movimento lateral no hover no celular, pois pode causar scroll horizontal indesejado */
     .btn-primary:hover {
-        transform: none; 
+        transform: none;
     }
 }

@@ -1,6 +1,55 @@
 /* You can add global styles to this file, and also import other style files */
 body {
     margin: 0;
+   
 
     color: white;
+}
+
+
+
+body[data-theme="light"] {
+    --bg: #F5F5F5;
+    --card: #FFFFFF;
+    --text: #222222;
+    --text-secondary: #666666;
+    --border: rgba(0, 0, 0, 0.12);
+    --primary: #18747A;
+    --secondary: #80183B;
+    --sidebar: #FFFFFF;
+
+     --status-pendente-bg: rgba(128, 24, 59, 0.15);
+    --status-pendente-text: #80183B;
+
+    --status-andamento-bg: rgba(24, 116, 122, 0.15);
+    --status-andamento-text: #18747A;
+
+    --status-concluida-bg: rgba(0, 170, 80, 0.15);
+    --status-concluida-text: #008F4C;
+
+    --danger: #C0392B;
+}
+
+body[data-theme="dark"] {
+    --bg: #0A0A0A;
+    --card: #141414;
+    --text: #FFFFFF;
+    --text-secondary: #A8A8A8;
+    --border: rgba(204, 204, 204, 0.15);
+    --primary: #18747A;
+    --secondary: #80183B;
+    --sidebar: #141414;
+
+
+    --danger: #80183B;
+    
+
+    --status-pendente-bg: rgba(128, 24, 59, 0.20);
+    --status-pendente-text: #FF7AA8;
+
+    --status-andamento-bg: rgba(24, 116, 122, 0.20);
+    --status-andamento-text: #62D6DD;
+
+    --status-concluida-bg: rgba(0, 170, 80, 0.20);
+    --status-concluida-text: #65E29B;
 }
