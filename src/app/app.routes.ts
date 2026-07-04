@@ -48,8 +48,13 @@ export const routes: Routes = [
     },
 
     {
+<<<<<<< HEAD
      path: "agenda", loadComponent: () =>
         import('./pages/agenda/agenda').then(x => x.AgendaComponent)
+=======
+        path: "conquistas", loadComponent: () =>
+            import('./pages/conquistas/conquistas').then(x => x.Conquistas)
+>>>>>>> cb2a16dc6987d4ebc8795770c72cf43290138615
     },
 ];
 

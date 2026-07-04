@@ -10,10 +10,10 @@ import { FinanceiroService, Financeiro } from '../../services/financeiro.service
   templateUrl: './financeiro.html',
   styleUrl: './financeiro.css'
 })
+
 export class FinanceiroComponent implements OnInit {
   listaFinanceiro: Financeiro[] = [];
 
-  // Variáveis do Formulário
   idEdicao: number | null = null;
   descricaoTransacao: string = '';
   valorTransacao: number | null = null;
@@ -21,7 +21,7 @@ export class FinanceiroComponent implements OnInit {
   tipoTransacao: 'RECEITA' | 'DESPESA' = 'DESPESA';
   statusTransacao: 'PAGO' | 'PENDENTE' = 'PENDENTE';
 
-  constructor(private financeiroService: FinanceiroService) {}
+  constructor(private financeiroService: FinanceiroService) { }
 
   ngOnInit() {
     this.financeiroService.financeiro$.subscribe(dados => {
@@ -29,7 +29,6 @@ export class FinanceiroComponent implements OnInit {
     });
   }
 
-  // Lógica do CRUD
   salvarTransacao() {
     if (!this.descricaoTransacao || !this.valorTransacao || !this.dataTransacao) return;
 
@@ -46,7 +45,7 @@ export class FinanceiroComponent implements OnInit {
     } else {
       this.financeiroService.adicionar(transacao);
     }
-    
+
     this.limparFormulario();
   }
 
@@ -74,7 +73,6 @@ export class FinanceiroComponent implements OnInit {
     this.statusTransacao = 'PENDENTE';
   }
 
-  // Cálculos reativos (atualizam automaticamente quando a lista muda)
   get totalReceitas(): number {
     return this.listaFinanceiro.filter(i => i.tipo === 'RECEITA').reduce((acc, i) => acc + i.valor, 0);
   }

@@ -12,6 +12,8 @@
                 id="tarefa"
                 type="text"
                 placeholder="Digite a tarefa"
+                [(ngModel)]="tarefa"
+                [ngModelOptions]="{standalone: true}"
             >
         </div>
 
@@ -20,19 +22,22 @@
             <input
                 id="limite-data"
                 type="date"
+                 [(ngModel)]="dataLimite"
+                 [ngModelOptions]="{standalone: true}"
             >
         </div>
 
         <div class="campo">
             <label for="status">Status</label>
-            <select id="status">
+            <select id="status" [(ngModel)]="statu"
+            [ngModelOptions]="{standalone: true}">
                 <option value="pendente">Pendente</option>
                 <option value="andamento">Em andamento</option>
                 <option value="concluida">Concluída</option>
             </select>
         </div>
 
-        <button type="submit">
+        <button (click)="salvar()" type="submit">
             Adicionar Tarefa
         </button>
 
@@ -60,8 +65,28 @@
                     <button>Editar</button>
                     <button>Excluir</button>
                 </div>
-
             </li>
+
+                @for(tarefa of tarefas; let i = $index; track tarefas){
+                    <li class="item-tarefa">
+
+                <div class="info-tarefa">
+                    <strong>{{tarefas[i]}}</strong>
+                    <p>Data limite: {{datasLimites[i]}}</p>
+                    <span class="status {{status[i]}}">
+                        {{status[i]}}
+                    </span>
+                </div>
+
+                <div class="acoes-tarefa">
+                    <button (click)="preencherParaEditar(tarefa, datasLimites[i],status[i])">Editar</button>
+                    <button (click)="apagar(tarefa)">Excluir</button>
+                </div>
+            </li>
+
+                }
+
+            
 
         </ul>
 

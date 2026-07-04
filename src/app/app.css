@@ -2,14 +2,14 @@
 .layout {
     display: flex;
     min-height: 100vh;
-    background-color: #0a0a0a;
+    background-color:var(--sidebar);
 }
 
 /* Sidebar */
 .sidebar {
     width: 260px;
     min-height: 100vh;
-    background-color: #141414;
+    background-color: var(--sidebar);
     flex-shrink: 0; /* Evita que a sidebar seja "espremida" */
     border-right: 1px solid rgba(204, 204, 204, 0.15);
 }
