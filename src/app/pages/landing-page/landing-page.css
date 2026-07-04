@@ -1,4 +1,4 @@
-```css
+
 /* ============================= */
 /* RESET BÁSICO */
 /* Remove espaçamentos padrões do navegador e facilita controlar tamanhos */
@@ -31,7 +31,10 @@ body {
         var(--preto);
     color: var(--branco);
     font-family: Arial, Helvetica, sans-serif;
+
+
 }
+
 
 /* ============================= */
 /* SEÇÃO PRINCIPAL / HERO */
