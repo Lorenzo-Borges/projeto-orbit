@@ -28,7 +28,6 @@ export class FinanceiroService {
     this.financeiroSubject.next([...this.listaFinanceiro]);
   }
 
-  // NOVO: Método para atualizar uma transação existente
   atualizar(itemAtualizado: Financeiro) {
     const index = this.listaFinanceiro.findIndex(item => item.id === itemAtualizado.id);
     if (index !== -1) {

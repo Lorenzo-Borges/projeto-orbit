@@ -46,5 +46,10 @@ export const routes: Routes = [
         path: "financeiro", loadComponent: () =>
             import('./pages/financeiro/financeiro').then(x => x.FinanceiroComponent)
     },
+
+    {
+        path: "conquistas", loadComponent: () =>
+            import('./pages/conquistas/conquistas').then(x => x.Conquistas)
+    },
 ];
 
