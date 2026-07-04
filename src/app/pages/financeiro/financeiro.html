@@ -3,11 +3,11 @@
 
   <div class="financeiro-resumo">
     <div class="card-financeiro receita">
-      <small>Receitas</small><br>
+      <small>Receitas</small>
       <strong>{{ totalReceitas | currency:'BRL' }}</strong>
     </div>
     <div class="card-financeiro despesa">
-      <small>Despesas</small><br>
+      <small>Despesas</small>
       <strong>{{ totalDespesas | currency:'BRL' }}</strong>
     </div>
     <div class="card-financeiro saldo">
@@ -83,7 +83,7 @@
                 
                 <div class="acoes-lista">
                   <button class="btn btn-secondary" (click)="editarTransacao(item)">Editar</button>
-                  <button class="btn btn-secondary" (click)="excluirTransacao(item.id)">Excluir</button>
+                  <button class="btn btn-cancel" (click)="excluirTransacao(item.id)">Excluir</button>
                 </div>
               </div>
             </li>

@@ -7,4 +7,7 @@ import { RouterLink } from '@angular/router';
   templateUrl: './conquistas.html',
   styleUrl: './conquistas.css',
 })
-export class Conquistas {}
+
+export class Conquistas {
+  
+}
