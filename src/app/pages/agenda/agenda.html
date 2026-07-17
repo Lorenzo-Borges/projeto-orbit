@@ -12,3 +12,62 @@
     </div>
 
 </div>
+
+
+<!-- <div *ngIf="showModal" class="modal-overlay">
+
+    <div class="modal">
+        <h2>Novo compromisso</h2>
+
+        <label>Título</label>
+
+        <input
+             type="text"
+             [(ngModel)]="eventTitle">
+
+        <p>{{ selectedDate }}</p>
+
+        <button (click)="cancelar()">
+            Cancelar
+        </button>
+        <button (click)="salvar()">
+            Salvar
+        </button>
+    </div>
+    
+</div> -->
+
+@if (showModal) {
+
+<div class="modal-overlay">
+
+    <div class="modal">
+
+        <h2>Novo compromisso</h2>
+
+        <label>Título</label>
+
+        <input
+            type="text"
+            [(ngModel)]="eventTitle">
+
+        <br><br>
+
+        <strong>Data:</strong>
+        {{ selectedDate }}
+
+        <br><br>
+
+        <button (click)="cancelar()">
+            Cancelar
+        </button>
+
+        <button (click)="salvar()">
+            Salvar
+        </button>
+
+    </div>
+
+</div>
+
+}
