@@ -1,24 +1,57 @@
-/* You can add global styles to this file, and also import other style files */
-body {
-    margin: 0;
-   
+/* ==========================================
+   ESTILOS GLOBAIS - ORBIT
+   ========================================== */
 
-    color: white;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
 
+body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    transition:
+        background-color .3s ease,
+        color .3s ease;
+}
+
+/* ==========================================
+   TEMA CLARO
+   ========================================== */
 
 body[data-theme="light"] {
-    --bg: #F5F5F5;
+
+    /* Fundo */
+    --bg: #F7F8FA;
+    --surface: #FDFDFD;
     --card: #FFFFFF;
-    --text: #222222;
-    --text-secondary: #666666;
-    --border: rgba(0, 0, 0, 0.12);
-    --primary: #18747A;
-    --secondary: #80183B;
     --sidebar: #FFFFFF;
 
-     --status-pendente-bg: rgba(128, 24, 59, 0.15);
+    /* Textos */
+    --text: #222222;
+    --text-secondary: #666666;
+
+    /* Bordas */
+    --border: rgba(0, 0, 0, 0.10);
+
+    /* Marca */
+    --primary: #18747A;
+    --secondary: #80183B;
+
+    /* Estados */
+    --hover: rgba(0, 0, 0, 0.04);
+
+    /* Sombras */
+    --shadow: 0 12px 35px rgba(0, 0, 0, 0.08);
+
+    /* Status */
+    --status-pendente-bg: rgba(128, 24, 59, 0.15);
     --status-pendente-text: #80183B;
 
     --status-andamento-bg: rgba(24, 116, 122, 0.15);
@@ -27,23 +60,40 @@ body[data-theme="light"] {
     --status-concluida-bg: rgba(0, 170, 80, 0.15);
     --status-concluida-text: #008F4C;
 
+    /* Erro */
     --danger: #C0392B;
 }
 
+/* ==========================================
+   TEMA ESCURO
+   ========================================== */
+
 body[data-theme="dark"] {
+
+    /* Fundo */
     --bg: #0A0A0A;
+    --surface: #1B1B1B;
     --card: #141414;
-    --text: #FFFFFF;
-    --text-secondary: #A8A8A8;
-    --border: rgba(204, 204, 204, 0.15);
-    --primary: #18747A;
-    --secondary: #80183B;
     --sidebar: #141414;
 
+    /* Textos */
+    --text: #FFFFFF;
+    --text-secondary: #A8A8A8;
 
-    --danger: #80183B;
-    
+    /* Bordas */
+    --border: rgba(255, 255, 255, 0.12);
 
+    /* Marca */
+    --primary: #18747A;
+    --secondary: #80183B;
+
+    /* Estados */
+    --hover: rgba(255, 255, 255, 0.04);
+
+    /* Sombras */
+    --shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+
+    /* Status */
     --status-pendente-bg: rgba(128, 24, 59, 0.20);
     --status-pendente-text: #FF7AA8;
 
@@ -52,4 +102,7 @@ body[data-theme="dark"] {
 
     --status-concluida-bg: rgba(0, 170, 80, 0.20);
     --status-concluida-text: #65E29B;
+
+    /* Erro */
+    --danger: #80183B;
 }

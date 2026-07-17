@@ -1,4 +1,3 @@
-
 /* ============================= */
 /* RESET BÁSICO */
 /* Remove espaçamentos padrões do navegador e facilita controlar tamanhos */
@@ -11,7 +10,8 @@
 /* ============================= */
 /* VARIÁVEIS DE CORES */
 /* Facilita trocar cores depois sem precisar alterar o CSS inteiro */
-:root {
+
+/* :root {
     --preto: #080808;
     --preto-card: #141414;
     --cinza-texto: #a8a8a8;
@@ -20,19 +20,29 @@
     --vinho: #80183b;
     --vinho-claro: #b32355;
     --azul: #18747a;
-}
+} */
 
 /* ============================= */
 /* ESTILO GERAL DA PÁGINA */
-body {
+/* body {
     background:
         radial-gradient(circle at top right, rgba(24, 116, 122, 0.18), transparent 35%),
         radial-gradient(circle at top left, rgba(128, 24, 59, 0.12), transparent 30%),
-        var(--preto);
-    color: var(--branco);
+        var(--bg);
+    color: var(--text);
     font-family: Arial, Helvetica, sans-serif;
 
 
+} */
+
+:host {
+    display: block;
+    min-height: 100vh;
+    background:
+        radial-gradient(circle at top right, rgba(24, 116, 122, .16), transparent 35%),
+        radial-gradient(circle at top left, rgba(128, 24, 59, .12), transparent 30%),
+        var(--bg);
+    color: var(--text);
 }
 
 
@@ -81,14 +91,14 @@ body {
 #atencao {
     width: fit-content;
     padding: 10px 18px;
-    border: 1px solid var(--cinza-borda);
+    border: 1px solid var(--border);
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.04);
+    background: var(--card);
     margin-bottom: 26px;
 }
 
 #atencao p {
-    color: var(--branco);
+    color: var(--text);
     font-size: 14px;
 }
 
@@ -104,7 +114,7 @@ body {
 /* Texto de apresentação */
 #resumo {
     max-width: 560px;
-    color: var(--cinza-texto);
+    color: var(--text-secondary);
     font-size: 18px;
     line-height: 1.7;
     margin-bottom: 34px;
@@ -125,7 +135,7 @@ body {
     border-radius: 12px;
     border: 1px solid transparent;
     background: linear-gradient(135deg, var(--vinho), var(--vinho-claro));
-    color: var(--branco);
+    color: white;
     font-size: 15px;
     font-weight: 700;
     cursor: pointer;
@@ -135,9 +145,9 @@ body {
 
 /* Segundo botão com aparência mais discreta */
 #botoes button:nth-child(2) {
-    background: rgba(139, 39, 90, 0.578);
-    border: 1px solid var(--cinza-borda);
-    box-shadow: none;
+    background: var(--card);
+    border: 1px solid var(--border);
+    color: var(--text);
 }
 
 /* Efeito ao passar o mouse */
@@ -154,12 +164,12 @@ body {
 }
 
 /* Cada bloco de dado */
-#dadosFicticios > div {
+#dadosFicticios>div {
     min-width: 150px;
     padding: 18px;
     border-radius: 16px;
-    border: 1px solid var(--cinza-borda);
-    background: rgba(255, 255, 255, 0.035);
+    border: 1px solid var(--border);
+    background: var(--card);
 }
 
 #dadosFicticios h3 {
@@ -185,8 +195,8 @@ body {
     background:
         linear-gradient(135deg, rgba(128, 24, 59, 0.22), transparent 38%),
         linear-gradient(315deg, rgba(24, 116, 122, 0.22), transparent 38%),
-        rgba(255, 255, 255, 0.035);
-    box-shadow: 0 30px 90px rgba(0, 0, 0, 0.65);
+        var(--card);
+    box-shadow: 0 18px 45px rgba(0, 0, 0, 0.15);
     position: relative;
     z-index: 2;
     overflow: hidden;
@@ -211,11 +221,11 @@ body {
     top: 80px;
     bottom: 30px;
     border-radius: 22px;
-    border: 1px solid var(--cinza-borda);
+    border: 1px solid var(--border);
     background:
         radial-gradient(circle at 25% 35%, rgba(128, 24, 59, 0.35), transparent 16%),
         radial-gradient(circle at 72% 28%, rgba(24, 116, 122, 0.35), transparent 18%),
-        linear-gradient(90deg, rgba(255,255,255,0.03), rgba(255,255,255,0.01));
+        linear-gradient(90deg, transparent, rgba(128, 24, 59, 0.03));
 }
 
 /* ============================= */
@@ -264,9 +274,8 @@ body {
     min-height: 180px;
     padding: 26px;
     border-radius: 18px;
-    border: 1px solid var(--cinza-borda);
-    background:
-        linear-gradient(180deg, rgba(255,255,255,0.05), rgba(255,255,255,0.015));
+    border: 1px solid var(--border);
+    background: var(--card);
     box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
     transition: 0.3s;
 }
@@ -286,12 +295,12 @@ body {
     border-radius: 50%;
     margin-bottom: 22px;
     background:
-        radial-gradient(circle, var(--azul) 0%, rgba(24,116,122,0.2) 65%, transparent 70%);
+        radial-gradient(circle, var(--azul) 0%, rgba(24, 116, 122, 0.2) 65%, transparent 70%);
 }
 
 .card:nth-child(even)::before {
     background:
-        radial-gradient(circle, var(--vinho) 0%, rgba(128,24,59,0.2) 65%, transparent 70%);
+        radial-gradient(circle, var(--vinho) 0%, rgba(128, 24, 59, 0.2) 65%, transparent 70%);
 }
 
 .card h3 {
@@ -300,7 +309,7 @@ body {
 }
 
 .card p {
-    color: var(--cinza-texto);
+    color: var(--text-secondary);
     line-height: 1.6;
     font-size: 15px;
 }
@@ -313,9 +322,9 @@ body {
     border-radius: 24px;
     border: 1px solid rgba(128, 24, 59, 0.35);
     background:
-        radial-gradient(circle at left, rgba(128, 24, 59, 0.22), transparent 32%),
-        radial-gradient(circle at right, rgba(24, 116, 122, 0.22), transparent 32%),
-        rgba(255, 255, 255, 0.035);
+        radial-gradient(circle at left, rgba(128, 24, 59, .08), transparent 35%),
+        radial-gradient(circle at right, rgba(24, 116, 122, .08), transparent 35%),
+        var(--card);
     text-align: center;
 }
 
@@ -325,7 +334,7 @@ body {
 }
 
 .tituloPropaganda p {
-    color: var(--cinza-texto);
+    color: var(--text-secondary);
     font-size: 17px;
     line-height: 1.6;
     margin: 16px 0 28px;
@@ -366,7 +375,7 @@ body {
         flex-direction: column;
     }
 
-    #dadosFicticios > div {
+    #dadosFicticios>div {
         width: 100%;
     }
 
