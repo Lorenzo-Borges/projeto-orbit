@@ -1,119 +1,177 @@
 :host {
     display: block;
     min-height: 100vh;
-    background-color: #0a0a0a;
+    background: var(--bg);
     font-family: 'Inter', sans-serif;
 }
 
-/* ===== Container principal ===== */
+
+/* ===== Container ===== */
 
 .agenda-container {
     max-width: 1100px;
     margin: 0 auto;
     padding: 32px 24px;
-    color: #CCCCCC;
+    color: var(--text);
 }
 
-.agenda-container h2 {
-    color: #FFFFFF;
-    font-size: 24px;
-    font-weight: 600;
-    margin-bottom: 24px;
+
+/* ===== Cabeçalho ===== */
+
+.top-text {
+    margin-bottom: 28px;
 }
 
-/* ===== Card do calendário ===== */
+.top-text h1 {
+    color: var(--text);
+    font-size: 28px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.top-text p {
+    color: var(--text-secondary);
+    font-size: 15px;
+}
+
+
+/* ===== Calendário ===== */
 
 .calendario-card {
-    background: #141414;
-    border: 1px solid rgba(204, 204, 204, .15);
-    border-radius: 10px;
-    padding: 20px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: var(--shadow);
     transition: .3s;
 }
 
 .calendario-card:hover {
-    border-color: rgba(204, 204, 204, .3);
-    transform: translateY(-2px);
+    border-color: var(--primary);
 }
 
-/* ===== FullCalendar customização ===== */
 
-full-calendar {
-    display: block;
-    width: 100%;
+/* ===== Full Calendar ===== */
+
+::ng-deep .fc {
+    color: var(--text);
 }
+
 
 /* Cabeçalho do calendário */
-.fc {
-    color: #CCCCCC;
-}
 
-.fc-toolbar-title {
-    color: #FFFFFF !important;
-    font-size: 20px !important;
+::ng-deep .fc .fc-toolbar-title {
+    color: var(--text);
+    font-size: 22px;
     font-weight: 600;
 }
 
-/* Botões do calendário */
-.fc-button {
-    background: transparent !important;
-    border: 1px solid rgba(204,204,204,.2) !important;
-    color: #CCCCCC !important;
-    border-radius: 6px !important;
+
+/* Botões */
+
+::ng-deep .fc .fc-button {
+    background: var(--primary);
+    border: none;
+    color: white;
+    border-radius: 8px;
+    padding: 8px 14px;
+    font-weight: 600;
     transition: .3s;
-    text-transform: capitalize !important;
 }
 
-.fc-button:hover {
-    background: #18747A !important;
-    border-color: #18747A !important;
-    color: #fff !important;
+
+::ng-deep .fc .fc-button:hover {
+    background: var(--secondary);
 }
+
+
+::ng-deep .fc .fc-button-active {
+    background: var(--secondary) !important;
+}
+
+
+/* Dias da semana */
+
+::ng-deep .fc .fc-col-header-cell {
+    background: var(--table-header);
+    border-color: var(--border);
+}
+
+
+::ng-deep .fc .fc-col-header-cell-cushion {
+    color: var(--text);
+    font-weight: 600;
+}
+
+
+/* Células dos dias */
+
+::ng-deep .fc .fc-daygrid-day {
+    background: var(--card);
+    border-color: var(--border);
+}
+
+
+::ng-deep .fc .fc-daygrid-day-number {
+    color: var(--text);
+    padding: 10px;
+}
+
 
 /* Dia atual */
-.fc-day-today {
-    background: rgba(24,116,122,.15) !important;
+
+::ng-deep .fc .fc-day-today {
+    background: var(--status-andamento-bg) !important;
 }
+
 
 /* Eventos */
-.fc-event {
-    background: linear-gradient(90deg, #18747A, #80183B) !important;
-    border: none !important;
-    padding: 4px 6px;
+
+::ng-deep .fc-event {
+    background: var(--primary);
+    border: none;
     border-radius: 6px;
-    font-size: 12px;
+    padding: 4px 8px;
+    color: white;
+    font-weight: 600;
 }
 
-/* Grid */
-.fc-theme-standard td,
-.fc-theme-standard th {
-    border-color: rgba(204,204,204,.08) !important;
+
+::ng-deep .fc-event:hover {
+    background: var(--secondary);
 }
 
-/* Hover nos dias */
-.fc-daygrid-day:hover {
-    background: rgba(255,255,255,.03);
-    cursor: pointer;
+
+/* Linhas */
+
+::ng-deep .fc-theme-standard td,
+::ng-deep .fc-theme-standard th {
+    border-color: var(--border);
 }
+
 
 /* ===== Responsivo ===== */
 
-@media (max-width: 768px) {
+@media(max-width:768px){
 
     .agenda-container {
         padding: 20px 16px;
     }
 
+
     .calendario-card {
         padding: 12px;
     }
 
-    .fc-toolbar {
-        flex-direction: column;
-        gap: 10px;
+
+    .top-text h1 {
+        font-size: 24px;
     }
 
-    .fc-toolbar-title {
-        font-size: 16px !important;
+
+    ::ng-deep .fc .fc-toolbar {
+        flex-direction: column;
+        gap: 12px;
     }
+
 }

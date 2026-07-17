@@ -1,34 +1,33 @@
-/* Aplica o fundo escuro em toda a página de metas e define a fonte padrão */
+/* Página */
 :host {
     display: block;
     min-height: 100vh;
-    background-color: #0a0a0a; /* Fundo levemente mais escuro que os cards (#141414) para gerar contraste */
+    background: var(--bg);
     font-family: 'Inter', sans-serif;
 }
 
-/* Container principal da página */
+/* Container */
 .metas-container {
     max-width: 800px;
     margin: 0 auto;
     padding: 32px 24px;
-    color: #CCCCCC;
-    font-family: 'Inter', sans-serif; /* Força a fonte no container */
+    color: var(--text);
 }
 
 .metas-container h2 {
-    font-family: 'Inter', sans-serif; /* Força a fonte no título da página */
-    color: #FFFFFF;
+    color: var(--text);
     font-size: 24px;
     font-weight: 600;
     margin-bottom: 24px;
 }
 
-/* Estilos do Formulário */
+/* Formulário */
 .formulario-metas {
-    background-color: #141414;
+    background: var(--card);
     padding: 24px;
     border-radius: 10px;
-    border: 1px solid rgba(204, 204, 204, 0.15);
+    border: 1px solid var(--border);
+
     display: flex;
     flex-direction: column;
     gap: 16px;
@@ -41,23 +40,28 @@
 }
 
 .campo label {
-    font-family: 'Inter', sans-serif; /* Força a fonte nos títulos (labels) dos formulários */
+    color: var(--text-secondary);
     font-size: 14px;
     font-weight: 500;
-    color: #A8A8A8;
 }
 
 .campo input,
 .campo textarea {
-    font-family: 'Inter', sans-serif;
-    background-color: transparent;
-    border: 1px solid rgba(204, 204, 204, 0.15);
-    color: #FFFFFF;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+
     padding: 12px 16px;
     border-radius: 8px;
     font-size: 15px;
+
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: .3s;
+}
+
+.campo input::placeholder,
+.campo textarea::placeholder {
+    color: var(--text-secondary);
 }
 
 .campo textarea {
@@ -65,52 +69,59 @@
     min-height: 80px;
 }
 
-/* Foco nos inputs usando a cor de destaque do seu tema */
 .campo input:focus,
 .campo textarea:focus {
-    border-color: #18747A;
+    border-color: var(--primary);
 }
 
-/* Botão de Adicionar (Usando sua paleta e gradiente) */
+/* Botão */
+
 .formulario-metas button[type="submit"] {
-    font-family: 'Inter', sans-serif;
-    background-color: #80183B;
-    color: #FFFFFF;
+    background: var(--secondary);
+    color: #fff;
+
     border: none;
-    padding: 14px 18px;
     border-radius: 10px;
+
+    padding: 14px 18px;
+
     font-size: 15px;
     font-weight: 600;
+
     cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 8px;
+    transition: .3s;
 }
 
 .formulario-metas button[type="submit"]:hover:not(:disabled) {
-    background: linear-gradient(90deg, #18747A 0%, #80183B 100%);
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--secondary)
+    );
+
     transform: translateY(-2px);
 }
 
 .formulario-metas button[type="submit"]:disabled {
-    background-color: #2a2a2a;
-    color: #666666;
+    background: var(--border);
+    color: var(--text-secondary);
     cursor: not-allowed;
 }
 
+/* Separador */
+
 hr {
-    border: 0;
+    border: none;
     height: 1px;
-    background: rgba(204, 204, 204, 0.15);
+    background: var(--border);
     margin: 32px 0;
 }
 
-/* Listagem de Metas */
+/* Lista */
 
 .lista-metas h3 {
-    font-family: 'Inter', sans-serif; /* Força a fonte no título da lista */
-    color: #FFFFFF;
+    color: var(--text);
     font-size: 20px;
-    font-weight: 600;
     margin-bottom: 20px;
 }
 
@@ -122,94 +133,95 @@ hr {
 }
 
 .item-meta {
-    background-color: #141414;
-    border: 1px solid rgba(204, 204, 204, 0.15);
+    background: var(--card);
+    border: 1px solid var(--border);
+
     border-radius: 10px;
     padding: 20px;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: all 0.3s ease;
+
+    transition: .3s;
 }
 
 .item-meta:hover {
-    border-color: rgba(204, 204, 204, 0.3);
+    border-color: var(--primary);
 }
 
 .info-meta strong {
-    color: #FFFFFF;
+    color: var(--text);
     font-size: 16px;
-    font-weight: 600;
     display: block;
     margin-bottom: 4px;
 }
 
 .info-meta p {
-    color: #CCCCCC;
+    color: var(--text);
     font-size: 14px;
     margin-bottom: 8px;
 }
 
 .info-meta small {
-    color: #A8A8A8;
+    color: var(--text-secondary);
     font-size: 12px;
 }
 
-/* Botões de Ação na Lista (Editar / Excluir) */
+/* Botões */
+
 .acoes-meta {
     display: flex;
     gap: 8px;
 }
 
 .acoes-meta button {
-    font-family: 'Inter', sans-serif;
-    background-color: transparent;
-    border: 1px solid rgba(204, 204, 204, 0.15);
-    color: #CCCCCC;
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text);
+
     padding: 8px 16px;
     border-radius: 8px;
-    font-size: 13px;
-    font-weight: 500;
+
     cursor: pointer;
-    transition: all 0.3s ease;
+    transition: .3s;
 }
 
 .acoes-meta button:hover {
-    color: #FFFFFF;
+    color: #fff;
 }
 
-/* Estilo específico pro Editar usando o azul/verde do gradiente */
 .acoes-meta button:first-child:hover {
-    background-color: #18747A;
-    border-color: #18747A;
+    background: var(--primary);
+    border-color: var(--primary);
 }
 
-/* Estilo específico pro Excluir usando o vermelho do gradiente */
 .acoes-meta button:last-child:hover {
-    background-color: #80183B;
-    border-color: #80183B;
+    background: var(--danger);
+    border-color: var(--danger);
 }
 
-/* Link de Voltar */
+/* Link */
+
 a[routerLink] {
-    color: #A8A8A8;
+    color: var(--text-secondary);
     text-decoration: none;
-    font-size: 14px;
-    transition: color 0.3s ease;
+    transition: .3s;
 }
 
 a[routerLink]:hover {
-    color: #FFFFFF;
+    color: var(--primary);
 }
 
-/* Responsividade Básica */
+/* Responsivo */
+
 @media (max-width: 600px) {
     .item-meta {
         flex-direction: column;
         align-items: flex-start;
         gap: 16px;
     }
-    
+
     .acoes-meta {
         width: 100%;
         justify-content: flex-end;
