@@ -19,11 +19,11 @@ export class LoginCadastro {
     }
 
     logar(){
-      this.router.navigate(["./"])
+      this.router.navigate(["./home"])
     }
 
     cadastrar(){
-      this.router.navigate(["./"])
+      this.router.navigate(["./home"])
     }
   
   
