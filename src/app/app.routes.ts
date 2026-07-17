@@ -57,6 +57,12 @@ export const routes: Routes = [
 
         path: "conquistas", loadComponent: () =>
             import('./pages/conquistas/conquistas').then(x => x.Conquistas)
+    },
+
+    {
+
+        path: "home", loadComponent: () =>
+            import('./pages/home/home').then(x => x.Home)
     }
 
 ];
