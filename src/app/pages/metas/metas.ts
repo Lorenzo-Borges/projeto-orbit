@@ -14,6 +14,23 @@ import { MetasService } from '../../services/metas.service';
 export class MetasComponent {
   private metasService = inject(MetasService);
 
+  modalAberto:boolean = false;
+
+
+abrirModal(){
+
+    this.modalAberto = true;
+
+}
+
+
+
+fecharModal(){
+
+    this.modalAberto = false;
+
+}
+
   nomeMeta: string = '';
   descricaoMeta: string = '';
   dataVencimento: string = '';

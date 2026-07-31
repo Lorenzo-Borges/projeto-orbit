@@ -1,27 +1,34 @@
 <div class="config-container">
-    <h2>Sistema</h2>
+
+    <div class="config-header">
+        <h2>⚙️ Sistema</h2>
+        <p class="subtitulo">Gerencie as configurações da aplicação</p>
+    </div>
 
     <div class="config-card">
         <div class="config-item">
             <div class="config-info">
-                <label for="tema">Tema</label>
+                <label for="tema">🌓 Tema</label>
                 <p>Altere entre os temas disponíveis do sistema.</p>
             </div>
 
-            <button id="tema" class="btn-config"  (click)="alterarTema()">
+            <button id="tema" class="btn-config" (click)="alterarTema()">
                 Mudar Tema
             </button>
         </div>
 
         <div class="config-item">
             <div class="config-info">
-                <label for="notificacoes">Notificações</label>
+                <label for="notificacoes">🔔 Notificações</label>
                 <p>Ative ou desative os alertas da aplicação.</p>
             </div>
 
-            <button id="notificacoes" class="btn-config">
+            <button id="notificacoes" class="btn-config" >
                 Ligar / Desligar
             </button>
         </div>
     </div>
+
+    
+
 </div>

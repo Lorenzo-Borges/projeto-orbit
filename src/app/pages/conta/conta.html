@@ -1,22 +1,29 @@
 <div class="conta-container">
-    <h2>Conta</h2>
+
+    <div class="conta-header">
+        <h2>👤 Conta</h2>
+        <p class="subtitulo">Gerencie suas informações pessoais</p>
+    </div>
 
     <div class="config-card">
 
+        <!-- Conquistas -->
         <div class="config-item">
             <div class="config-info">
-                <label>Minhas conquistas</label>
+                <label>🏆 Minhas conquistas</label>
                 <p>Veja seu progresso e os marcos já alcançados.</p>
             </div>
 
             <a routerLink="/conquistas" class="btn-link">
-                Ver todas
+                Ver todas →
             </a>
         </div>
 
+        <!-- Nome -->
         <div class="config-item">
             <div class="config-info">
-                <label>Nome de usuário</label>
+                <label>👤 Nome de usuário</label>
+                <p>Seu nome de exibição no sistema</p>
                 <span class="config-value">jorge</span>
             </div>
 
@@ -25,16 +32,20 @@
             </button>
         </div>
 
+        <!-- E-mail -->
         <div class="config-item">
             <div class="config-info">
-                <label>E-mail</label>
+                <label>📧 E-mail</label>
+                <p>Seu endereço de e-mail cadastrado</p>
                 <span class="config-value">indiano@gmail.com</span>
             </div>
         </div>
 
+        <!-- Senha -->
         <div class="config-item">
             <div class="config-info">
-                <label>Senha</label>
+                <label>🔒 Senha</label>
+                <p>Proteja sua conta com uma senha forte</p>
                 <span class="config-value">••••••••</span>
             </div>
 
@@ -43,9 +54,10 @@
             </button>
         </div>
 
+        <!-- Sair -->
         <div class="config-item danger">
             <div class="config-info">
-                <label>Sair da conta</label>
+                <label>🚪 Sair da conta</label>
                 <p>Encerrar sua sessão atual.</p>
             </div>
 
@@ -55,4 +67,7 @@
         </div>
 
     </div>
+
+ 
+
 </div>

@@ -1,13 +1,16 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-gerenciamento-tarefa',
-  imports: [FormsModule],
+  imports: [FormsModule, CommonModule],
   templateUrl: './gerenciamento-tarefa.html',
   styleUrl: './gerenciamento-tarefa.css',
 })
 export class GerenciamentoTarefa {
+
+  modalAberto: boolean = false;
 
   tarefas: String[] = [];
   datasLimites: String[] = [];
@@ -40,7 +43,7 @@ export class GerenciamentoTarefa {
     this.datasLimites.push(this.dataLimite)
     this.status.push(this.statu)
 
-    alert("Tarefa cadastrada com sucesso")
+    
   }
 
 

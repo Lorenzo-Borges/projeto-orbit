@@ -1,4 +1,6 @@
-/* Página */
+/* ========================================
+   PÁGINA PRINCIPAL
+   ======================================== */
 :host {
     display: block;
     min-height: 100vh;
@@ -6,148 +8,348 @@
     font-family: 'Inter', sans-serif;
 }
 
-/* Container */
+/* Container Principal */
 .metas-container {
-    max-width: 800px;
+    max-width: 860px;
     margin: 0 auto;
-    padding: 32px 24px;
+    padding: 40px 24px;
     color: var(--text);
 }
 
-.metas-container h2 {
+/* Topo com botão de adicionar */
+.topo-metas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.topo-metas h2 {
     color: var(--text);
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.5px;
+}
+
+.topo-metas .btn-adicionar {
+    background: var(--secondary);
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-size: 15px;
     font-weight: 600;
-    margin-bottom: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
 }
 
-/* Formulário */
+.topo-metas .btn-adicionar:hover {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.topo-metas .btn-adicionar::before {
+    content: "+";
+    font-size: 20px;
+    font-weight: 300;
+}
+
+/* ========================================
+   MODAL
+   ======================================== */
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.3s ease;
+    padding: 20px;
+}
+
+.modal {
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 20px;
+    box-shadow: 0 25px 80px rgba(0, 0, 0, 0.6);
+    animation: slideUp 0.35s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+/* Scrollbar personalizada para o modal */
+.modal::-webkit-scrollbar {
+    width: 6px;
+}
+
+.modal::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.modal::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 3px;
+}
+
+.modal::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
+}
+
+/* Header do Modal */
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 24px 28px 20px;
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    background: var(--card);
+    border-radius: 20px 20px 0 0;
+    z-index: 1;
+}
+
+.modal-header h2 {
+    color: var(--text);
+    font-size: 22px;
+    font-weight: 700;
+    margin: 0;
+    letter-spacing: -0.3px;
+}
+
+.btn-fechar {
+    background: var(--bg);
+    border: none;
+    color: var(--text-secondary);
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-fechar:hover {
+    background: var(--danger);
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* Corpo do Modal - Formulário */
+.modal .formulario-metas {
+    padding: 28px 28px 24px;
+    background: transparent;
+    border: none;
+    gap: 18px;
+}
+
+/* ========================================
+   FORMULÁRIO
+   ======================================== */
 .formulario-metas {
     background: var(--card);
     padding: 24px;
-    border-radius: 10px;
+    border-radius: 12px;
     border: 1px solid var(--border);
-
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 18px;
 }
 
 .campo {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 6px;
 }
 
 .campo label {
     color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
+    font-size: 13px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 .campo input,
 .campo textarea {
-    background: transparent;
-    border: 1px solid var(--border);
+    background: var(--bg);
+    border: 2px solid var(--border);
     color: var(--text);
-
     padding: 12px 16px;
-    border-radius: 8px;
+    border-radius: 10px;
     font-size: 15px;
-
     outline: none;
-    transition: .3s;
+    transition: all 0.3s ease;
+    font-family: 'Inter', sans-serif;
 }
 
 .campo input::placeholder,
 .campo textarea::placeholder {
     color: var(--text-secondary);
-}
-
-.campo textarea {
-    resize: vertical;
-    min-height: 80px;
+    opacity: 0.6;
 }
 
 .campo input:focus,
 .campo textarea:focus {
     border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.1);
+    background: var(--card);
 }
 
-/* Botão */
+.campo textarea {
+    resize: vertical;
+    min-height: 80px;
+    max-height: 200px;
+}
+
+/* ========================================
+   BOTÕES DO MODAL
+   ======================================== */
+.modal-footer {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    padding: 0 28px 28px;
+    border-top: 1px solid var(--border);
+    padding-top: 20px;
+}
+
+.btn-cancelar {
+    padding: 12px 24px;
+    border-radius: 10px;
+    border: 2px solid var(--border);
+    background: transparent;
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.btn-cancelar:hover {
+    background: var(--border);
+    color: var(--text);
+}
 
 .formulario-metas button[type="submit"] {
     background: var(--secondary);
     color: #fff;
-
     border: none;
     border-radius: 10px;
-
-    padding: 14px 18px;
-
+    padding: 14px 24px;
     font-size: 15px;
     font-weight: 600;
-
     cursor: pointer;
-    transition: .3s;
+    transition: all 0.3s ease;
+    flex: 1;
 }
 
 .formulario-metas button[type="submit"]:hover:not(:disabled) {
-    background: linear-gradient(
-        90deg,
-        var(--primary),
-        var(--secondary)
-    );
-
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
 }
 
 .formulario-metas button[type="submit"]:disabled {
     background: var(--border);
     color: var(--text-secondary);
     cursor: not-allowed;
+    opacity: 0.5;
+    transform: none !important;
 }
 
-/* Separador */
-
+/* ========================================
+   LISTA DE METAS
+   ======================================== */
 hr {
     border: none;
-    height: 1px;
-    background: var(--border);
+    height: 2px;
+    background: linear-gradient(90deg, var(--border), transparent);
     margin: 32px 0;
 }
-
-/* Lista */
 
 .lista-metas h3 {
     color: var(--text);
     font-size: 20px;
+    font-weight: 600;
     margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.lista-metas h3::after {
+    content: attr(data-count);
+    background: var(--primary);
+    color: #fff;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 2px 10px;
+    border-radius: 20px;
 }
 
 .lista-metas ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 14px;
+    padding: 0;
 }
 
 .item-meta {
     background: var(--card);
     border: 1px solid var(--border);
-
-    border-radius: 10px;
-    padding: 20px;
-
+    border-radius: 12px;
+    padding: 20px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+    transition: all 0.3s ease;
+    position: relative;
+}
 
-    transition: .3s;
+.item-meta::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 4px;
+    background: var(--primary);
+    border-radius: 4px 0 0 4px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
 }
 
 .item-meta:hover {
     border-color: var(--primary);
+    transform: translateX(4px);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+}
+
+.item-meta:hover::before {
+    opacity: 1;
+}
+
+.info-meta {
+    flex: 1;
+    min-width: 0;
 }
 
 .info-meta strong {
@@ -155,75 +357,383 @@ hr {
     font-size: 16px;
     display: block;
     margin-bottom: 4px;
+    font-weight: 600;
 }
 
 .info-meta p {
-    color: var(--text);
+    color: var(--text-secondary);
     font-size: 14px;
-    margin-bottom: 8px;
+    margin: 0 0 8px 0;
+    line-height: 1.5;
 }
 
 .info-meta small {
     color: var(--text-secondary);
     font-size: 12px;
+    opacity: 0.7;
+    display: flex;
+    align-items: center;
+    gap: 6px;
 }
 
-/* Botões */
+.info-meta small::before {
+    content: "📅";
+    font-size: 14px;
+}
 
+/* ========================================
+   AÇÕES DA META
+   ======================================== */
 .acoes-meta {
     display: flex;
     gap: 8px;
+    flex-shrink: 0;
+    margin-left: 16px;
 }
 
 .acoes-meta button {
     background: transparent;
     border: 1px solid var(--border);
-    color: var(--text);
-
+    color: var(--text-secondary);
     padding: 8px 16px;
     border-radius: 8px;
-
+    font-size: 13px;
+    font-weight: 500;
     cursor: pointer;
-    transition: .3s;
-}
-
-.acoes-meta button:hover {
-    color: #fff;
+    transition: all 0.3s ease;
+    white-space: nowrap;
 }
 
 .acoes-meta button:first-child:hover {
     background: var(--primary);
     border-color: var(--primary);
+    color: #fff;
+    transform: scale(1.05);
 }
 
 .acoes-meta button:last-child:hover {
     background: var(--danger);
     border-color: var(--danger);
+    color: #fff;
+    transform: scale(1.05);
 }
 
-/* Link */
+/* ========================================
+   MENSAGEM VAZIA
+   ======================================== */
+.lista-metas > p {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 40px 20px;
+    background: var(--card);
+    border-radius: 12px;
+    border: 2px dashed var(--border);
+    font-size: 15px;
+}
 
+/* ========================================
+   LINK VOLTAR
+   ======================================== */
 a[routerLink] {
     color: var(--text-secondary);
     text-decoration: none;
-    transition: .3s;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
 }
 
 a[routerLink]:hover {
     color: var(--primary);
+    transform: translateX(-4px);
 }
 
-/* Responsivo */
+a[routerLink]::before {
+    content: "←";
+    font-size: 18px;
+}
 
-@media (max-width: 600px) {
+/* ========================================
+   ANIMAÇÕES
+   ======================================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: scale(0.95) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* ========================================
+   RESPONSIVIDADE
+   ======================================== */
+@media (max-width: 768px) {
+    .metas-container {
+        padding: 24px 16px;
+    }
+
+    .topo-metas {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+
+    .topo-metas h2 {
+        font-size: 24px;
+    }
+
+    .topo-metas .btn-adicionar {
+        justify-content: center;
+        padding: 14px;
+    }
+
+    .modal {
+        max-width: 100%;
+        margin: 16px;
+        border-radius: 16px;
+        max-height: 95vh;
+    }
+
+    .modal-header {
+        padding: 20px;
+    }
+
+    .modal .formulario-metas {
+        padding: 20px;
+    }
+
+    .modal-footer {
+        padding: 0 20px 20px;
+        flex-direction: column;
+    }
+
+    .modal-footer .btn-cancelar,
+    .modal-footer button[type="submit"] {
+        width: 100%;
+    }
+
     .item-meta {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
         gap: 16px;
+        padding: 16px 18px;
     }
 
     .acoes-meta {
-        width: 100%;
+        margin-left: 0;
         justify-content: flex-end;
+        gap: 6px;
     }
+
+    .acoes-meta button {
+        padding: 8px 14px;
+        font-size: 12px;
+        flex: 1;
+        text-align: center;
+    }
+
+    .formulario-metas {
+        padding: 16px;
+        gap: 14px;
+    }
+}
+
+@media (max-width: 480px) {
+    .topo-metas h2 {
+        font-size: 20px;
+    }
+
+    .modal-header h2 {
+        font-size: 18px;
+    }
+
+    .campo input,
+    .campo textarea {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .item-meta strong {
+        font-size: 15px;
+    }
+
+    .item-meta p {
+        font-size: 13px;
+    }
+}
+
+/* ========================================
+   TEMA ESCURO (SUPORTE)
+   ======================================== */
+@media (prefers-color-scheme: dark) {
+    .modal-overlay {
+        background: rgba(0, 0, 0, 0.85);
+    }
+
+    .modal {
+        background: var(--card);
+    }
+}
+
+/* ========================================
+   CLASSES ADICIONAIS PARA O HTML MELHORADO
+   ======================================== */
+
+/* Ícone do botão adicionar */
+.btn-adicionar .icone {
+    font-size: 20px;
+    font-weight: 300;
+    line-height: 1;
+}
+
+/* Ícone de vazio na lista */
+.sem-metas .icone-vazio {
+    display: block;
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.sem-metas {
+    color: var(--text-secondary);
+    text-align: center;
+    padding: 48px 20px;
+    background: var(--card);
+    border-radius: 12px;
+    border: 2px dashed var(--border);
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+.sem-metas br {
+    display: none;
+}
+
+@media (max-width: 480px) {
+    .sem-metas br {
+        display: block;
+    }
+}
+
+/* Rodapé com botão voltar */
+.rodape {
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid var(--border);
+}
+
+.btn-voltar {
+    color: var(--text-secondary);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 500;
+    padding: 8px 16px;
+    border-radius: 8px;
+    background: var(--card);
+    border: 1px solid var(--border);
+}
+
+.btn-voltar:hover {
+    color: var(--primary);
+    border-color: var(--primary);
+    transform: translateX(-4px);
+    box-shadow: 0 4px 15px rgba(99, 102, 241, 0.15);
+}
+
+/* Campos obrigatórios */
+.required {
+    color: var(--danger);
+    font-weight: 700;
+    margin-left: 2px;
+}
+
+/* Botão Salvar no Modal */
+.btn-salvar {
+    background: var(--secondary);
+    color: #fff;
+    border: none;
+    border-radius: 10px;
+    padding: 12px 28px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 1;
+    min-width: 120px;
+}
+
+.btn-salvar:hover:not(:disabled) {
+    background: linear-gradient(90deg, var(--primary), var(--secondary));
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(99, 102, 241, 0.3);
+}
+
+.btn-salvar:disabled {
+    background: var(--border);
+    color: var(--text-secondary);
+    cursor: not-allowed;
+    opacity: 0.5;
+    transform: none !important;
+}
+
+/* Botões de ação com ícones */
+.btn-editar,
+.btn-excluir {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.btn-editar:hover {
+    background: var(--primary);
+    border-color: var(--primary);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.btn-excluir:hover {
+    background: var(--danger);
+    border-color: var(--danger);
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* Ajuste responsivo para os botões com ícones */
+@media (max-width: 480px) {
+    .btn-editar,
+    .btn-excluir {
+        font-size: 12px;
+        padding: 6px 12px;
+        gap: 2px;
+    }
+}
+
+/* Ajuste para quando não tem descrição */
+.info-meta p:empty {
+    display: none;
 }

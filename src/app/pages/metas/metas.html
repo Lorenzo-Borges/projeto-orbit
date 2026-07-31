@@ -1,57 +1,189 @@
 <div class="metas-container">
-    <h2>Gestão de Metas</h2>
 
-    <form (ngSubmit)="adicionarMeta()" class="formulario-metas">
-        <div class="campo">
-            <label for="nome">Nome da Meta:</label>
-            <input type="text" id="nome" name="nome" [(ngModel)]="nomeMeta" placeholder="Ex: Aprender Java" required />
-        </div>
+    <!-- ======================================== -->
+    <!-- TOPO COM BOTÃO DE ADICIONAR -->
+    <!-- ======================================== -->
+    <div class="topo-metas">
+        <h2>🎯 Gestão de Metas</h2>
 
-        <div class="campo">
-            <label for="descricao">Descrição:</label>
-            <textarea id="descricao" name="descricao" [(ngModel)]="descricaoMeta"
-                placeholder="Detalhes adicionais..."></textarea>
-        </div>
-
-        <div class="campo">
-            <label for="vencimento">Data Limite:</label>
-            <input type="date" id="vencimento" name="vencimento" [(ngModel)]="dataVencimento" />
-        </div>
-
-        <button type="submit" class="btn-primary" [disabled]="!nomeMeta">
-            Adicionar Meta
+        <button class="btn-adicionar" (click)="abrirModal()">
+            <span class="icone"></span>
+            Nova Meta
         </button>
-    </form>
+    </div>
 
-    <hr />
-
+    <!-- ======================================== -->
+    <!-- LISTA DE METAS -->
+    <!-- ======================================== -->
     <div class="lista-metas">
-        <h3>Minhas Metas</h3>
+
+        <h3 [attr.data-count]="listaMetas.length">
+            Minhas Metas
+        </h3>
 
         @if (listaMetas.length === 0) {
-        <p style="color: #A8A8A8;">Você ainda não tem metas cadastradas. Que tal adicionar uma?</p>
+
+            <p class="sem-metas">
+                <span class="icone-vazio">📋</span>
+                Você ainda não tem metas cadastradas.<br />
+                Que tal adicionar uma?
+            </p>
+
         } @else {
-        <ul>
-            @for (meta of listaMetas; track meta.id) {
-            <li class="item-meta">
-                <div class="info-meta">
-                    <strong>{{ meta.nome }}</strong>
-                    <p>{{ meta.descricao }}</p>
 
-                    <small>Vencimento: {{ meta.dataVencimento | date:'dd/MM/yyyy':'UTC' }}</small>
-                </div>
+            <ul>
 
-                <div class="acoes-meta">
-                    <button (click)="editarMeta(meta.id)">Editar</button>
-                    <button (click)="excluirMeta(meta.id)">Excluir</button>
-                </div>
-            </li>
-            }
-        </ul>
+                @for (meta of listaMetas; track meta.id) {
+
+                    <li class="item-meta">
+
+                        <div class="info-meta">
+
+                            <strong>
+                                {{ meta.nome }}
+                            </strong>
+
+                            @if (meta.descricao) {
+                                <p>
+                                    {{ meta.descricao }}
+                                </p>
+                            }
+
+                            @if (meta.dataVencimento) {
+                                <small>
+                                    Vencimento:
+                                    {{ meta.dataVencimento | date:'dd/MM/yyyy':'UTC' }}
+                                </small>
+                            }
+
+                        </div>
+
+                        <div class="acoes-meta">
+
+                            <button class="btn-editar" (click)="editarMeta(meta.id)">
+                                ✏️ Editar
+                            </button>
+
+                            <button class="btn-excluir" (click)="excluirMeta(meta.id)">
+                                🗑️ Excluir
+                            </button>
+
+                        </div>
+
+                    </li>
+
+                }
+
+            </ul>
+
         }
+
     </div>
 
-    <div style="margin-top: 32px;">
-        <a routerLink="/" class="btn-primary" style="display: inline-block;">Voltar para o Início</a>
-    </div>
+    <!-- ======================================== -->
+    <!-- BOTÃO VOLTAR -->
+    <!-- ======================================== -->
+    
+
+    <!-- ======================================== -->
+    <!-- MODAL DE CADASTRO -->
+    <!-- ======================================== -->
+    @if (modalAberto) {
+
+        <div class="modal-overlay" (click)="fecharModal()">
+
+            <div class="modal" (click)="$event.stopPropagation()">
+
+                <!-- Header do Modal -->
+                <div class="modal-header">
+
+                    <h2>
+                        ✨ Nova Meta
+                    </h2>
+
+                    <button class="btn-fechar" (click)="fecharModal()" aria-label="Fechar modal">
+                        ×
+                    </button>
+
+                </div>
+
+                <!-- Formulário -->
+                <form (ngSubmit)="adicionarMeta(); fecharModal()" class="formulario-metas">
+
+                    <!-- Nome -->
+                    <div class="campo">
+
+                        <label for="nomeMetaInput">
+                            Nome da Meta <span class="required">*</span>
+                        </label>
+
+                        <input
+                            id="nomeMetaInput"
+                            type="text"
+                            name="nome"
+                            [(ngModel)]="nomeMeta"
+                            placeholder="Ex: Aprender Java"
+                            required
+                            autofocus />
+
+                    </div>
+
+                    <!-- Descrição -->
+                    <div class="campo">
+
+                        <label for="descMetaInput">
+                            Descrição
+                        </label>
+
+                        <textarea
+                            id="descMetaInput"
+                            name="descricao"
+                            [(ngModel)]="descricaoMeta"
+                            placeholder="Detalhes adicionais sobre sua meta...">
+                        </textarea>
+
+                    </div>
+
+                    <!-- Data -->
+                    <div class="campo">
+
+                        <label for="dataMetaInput">
+                            Data Limite
+                        </label>
+
+                        <input
+                            id="dataMetaInput"
+                            type="date"
+                            name="vencimento"
+                            [(ngModel)]="dataVencimento" />
+
+                    </div>
+
+                    <!-- Footer do Modal com Botões -->
+                    <div class="modal-footer">
+
+                        <button
+                            type="button"
+                            class="btn-cancelar"
+                            (click)="fecharModal()">
+                            Cancelar
+                        </button>
+
+                        <button
+                            type="submit"
+                            class="btn-salvar"
+                            [disabled]="!nomeMeta">
+                            💾 Salvar Meta
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    }
+
 </div>

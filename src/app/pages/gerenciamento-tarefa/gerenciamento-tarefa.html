@@ -6,42 +6,71 @@
 
         <h3>Cadastrar Nova Tarefa</h3>
 
-        <div class="campo">
-            <label for="tarefa">Tarefa</label>
-            <input
-                id="tarefa"
-                type="text"
-                placeholder="Digite a tarefa"
-                [(ngModel)]="tarefa"
-                [ngModelOptions]="{standalone: true}"
-            >
-        </div>
-
-        <div class="campo">
-            <label for="limite-data">Data Limite</label>
-            <input
-                id="limite-data"
-                type="date"
-                 [(ngModel)]="dataLimite"
-                 [ngModelOptions]="{standalone: true}"
-            >
-        </div>
-
-        <div class="campo">
-            <label for="status">Status</label>
-            <select id="status" [(ngModel)]="statu"
-            [ngModelOptions]="{standalone: true}">
-                <option value="pendente">Pendente</option>
-                <option value="andamento">Em andamento</option>
-                <option value="concluida">Concluída</option>
-            </select>
-        </div>
-
-        <button (click)="salvar()" type="submit">
-            Adicionar Tarefa
-        </button>
-
+       <!-- Botão para abrir o modal -->
+<button class="btn-primary" (click)="modalAberto = true">
+    Nova Tarefa
+</button>
     </form>
+
+<!-- Modal -->
+<div class="modal-overlay" *ngIf="modalAberto">
+    <div class="modal">
+
+        <div class="modal-header">
+            <h2>Nova Tarefa</h2>
+            <button class="btn-fechar" (click)="modalAberto = false">
+                ✕
+            </button>
+        </div>
+
+        <div class="modal-body">
+
+            <div class="campo">
+                <label for="tarefa">Tarefa</label>
+                <input
+                    id="tarefa"
+                    type="text"
+                    placeholder="Digite a tarefa"
+                    [(ngModel)]="tarefa"
+                    [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="campo">
+                <label for="limite-data">Data Limite</label>
+                <input
+                    id="limite-data"
+                    type="date"
+                    [(ngModel)]="dataLimite"
+                    [ngModelOptions]="{standalone: true}">
+            </div>
+
+            <div class="campo">
+                <label for="status">Status</label>
+                <select
+                    id="status"
+                    [(ngModel)]="statu"
+                    [ngModelOptions]="{standalone: true}">
+                    <option value="pendente">Pendente</option>
+                    <option value="andamento">Em andamento</option>
+                </select>
+            </div>
+
+        </div>
+
+        <div class="modal-footer">
+            <button class="btn-cancelar" (click)="modalAberto = false">
+                Cancelar
+            </button>
+
+            <button class="btn-primary" (click)="salvar(); modalAberto = false">
+                Adicionar Tarefa
+            </button>
+        </div>
+
+    </div>
+</div>
+
+    
 
     <hr>
 
