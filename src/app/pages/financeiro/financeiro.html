@@ -1,5 +1,8 @@
 <div class="financeiro-container">
-  <h2>Gestão Financeira</h2>
+  <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px;">
+    <h2 style="margin: 0;">Gestão Financeira</h2>
+    <button class="btn btn-primary" (click)="abrirModalNovo()">+ Nova Transação</button>
+  </div>
 
   <div class="financeiro-resumo">
     <div class="card-financeiro receita">
@@ -19,10 +22,73 @@
   <hr />
 
   <div class="financeiro-conteudo">
+    
     <div class="financeiro-lista-container">
+      <div class="lista-itens">
+        <h3>Transações Recentes</h3>
+        <ul>
+          @for (item of listaFinanceiro; track item.id) {
+            <li class="item-financeiro">
+              <div class="info-principal">
+                <strong>{{ item.descricao }}</strong><br>
+                <small>{{ item.dataVencimento | date:'dd/MM/yyyy':'UTC' }} | <span class="badge">{{ item.status }}</span></small>
+              </div>
+              
+              <div class="info-valores-acoes">
+                <span [class.texto-receita]="item.tipo === 'RECEITA'" [class.texto-despesa]="item.tipo === 'DESPESA'">
+                  {{ item.tipo === 'RECEITA' ? '+' : '-' }} {{ item.valor | currency:'BRL' }}
+                </span>
+                
+                <div class="acoes-lista">
+                  <button class="btn btn-secondary" (click)="editarTransacao(item)">Editar</button>
+                  <button class="btn btn-cancel" (click)="excluirTransacao(item.id)">Excluir</button>
+                </div>
+              </div>
+            </li>
+          } @empty {
+            <p style="color: var(--text-secondary); text-align: center; padding: 20px;">Nenhuma transação cadastrada.</p>
+          }
+        </ul>
+      </div>
+    </div>
+
+    <div class="grafico-card">
+      <p class="grafico-titulo">Balanço de Movimentação</p>
       
-      <form (ngSubmit)="salvarTransacao()" class="formulario-financeiro">
+      <div class="dashboard-barras">
+        <div class="dashboard-stats-resumo">
+          <span class="stat-item"><span class="ponto-receita"></span> Receitas</span>
+          <span>{{ totalReceitas | currency:'BRL' }}</span>
+        </div>
+        <div class="dashboard-stats-resumo">
+          <span class="stat-item"><span class="ponto-despesa"></span> Despesas</span>
+          <span>{{ totalDespesas | currency:'BRL' }}</span>
+        </div>
+      </div>
+
+      <hr style="margin: 12px 0;" />
+
+      <div style="display: flex; justify-content: space-between; align-items: center;">
+        <span style="color: var(--text-secondary); font-size: 14px;">Saldo Líquido</span>
+        <strong [style.color]="saldoFinanceiro >= 0 ? 'var(--success)' : 'var(--danger)'" style="font-size: 18px;">
+          {{ saldoFinanceiro | currency:'BRL' }}
+        </strong>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+@if (exibirModal) {
+  <div class="modal-overlay" (click)="fecharModal()">
+    <div class="modal-content" (click)="$event.stopPropagation()">
+      
+      <div class="modal-header">
         <h3>{{ idEdicao ? 'Editar Transação' : 'Nova Transação' }}</h3>
+        <button class="btn-fechar-modal" (click)="fecharModal()">&times;</button>
+      </div>
+
+      <form (ngSubmit)="salvarTransacao()" class="formulario-financeiro" style="background: transparent; border: none; padding: 0;">
         
         <div class="grid-form">
           <div class="campo">
@@ -56,40 +122,15 @@
           </div>
         </div>
 
-        <div class="acoes-form">
+        <div class="acoes-form" style="justify-content: flex-end; margin-top: 20px;">
+          <button type="button" class="btn btn-cancel" (click)="fecharModal()">Cancelar</button>
           <button type="submit" class="btn btn-primary" [disabled]="!descricaoTransacao || !valorTransacao || !dataTransacao">
-            {{ idEdicao ? 'Atualizar' : 'Adicionar' }}
+            {{ idEdicao ? 'Atualizar' : 'Salvar Transação' }}
           </button>
-          @if (idEdicao) {
-            <button type="button" class="btn btn-secondary" (click)="limparFormulario()">Cancelar</button>
-          }
         </div>
+
       </form>
 
-      <div class="lista-itens">
-        <h3>Transações Recentes</h3>
-        <ul>
-          @for (item of listaFinanceiro; track item.id) {
-            <li class="item-financeiro">
-              <div class="info-principal">
-                <strong>{{ item.descricao }}</strong><br>
-                <small>{{ item.dataVencimento | date:'dd/MM/yyyy':'UTC' }} | <span class="badge">{{ item.status }}</span></small>
-              </div>
-              
-              <div class="info-valores-acoes">
-                <span [class.texto-receita]="item.tipo === 'RECEITA'" [class.texto-despesa]="item.tipo === 'DESPESA'">
-                  {{ item.tipo === 'RECEITA' ? '+' : '-' }} {{ item.valor | currency:'BRL' }}
-                </span>
-                
-                <div class="acoes-lista">
-                  <button class="btn btn-secondary" (click)="editarTransacao(item)">Editar</button>
-                  <button class="btn btn-cancel" (click)="excluirTransacao(item.id)">Excluir</button>
-                </div>
-              </div>
-            </li>
-          }
-        </ul>
-      </div>
     </div>
   </div>
-</div>
+}

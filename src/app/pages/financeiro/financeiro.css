@@ -64,6 +64,15 @@
     border-left: 5px solid var(--primary);
 }
 
+/* ===== Layout do Conteúdo Principal (Lista + Dashboard) ===== */
+
+.financeiro-conteudo {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    align-items: start;
+}
+
 /* ===== Formulário ===== */
 
 .formulario-financeiro {
@@ -269,10 +278,143 @@ hr {
     gap: 8px;
 }
 
+/* ===== Dashboard / Gráfico Lateral ===== */
+
+.grafico-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.grafico-titulo {
+    color: var(--text-secondary);
+    font-size: 14px;
+    font-weight: 500;
+    margin: 0;
+}
+
+.dashboard-barras {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.dashboard-stats-resumo {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 4px;
+    font-size: 12px;
+    color: var(--text-secondary);
+}
+
+.stat-item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ponto-receita {
+    width: 8px;
+    height: 8px;
+    background-color: var(--success);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.ponto-despesa {
+    width: 8px;
+    height: 8px;
+    background-color: var(--danger);
+    border-radius: 50%;
+    display: inline-block;
+}
+
+/* ===== Estilos do Modal (Janela Flutuante Global) ===== */
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.75);
+    backdrop-filter: blur(4px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.modal-content {
+    background-color: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: 100%;
+    max-width: 550px;
+    padding: 28px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    animation: slideUp 0.3s ease-out;
+    box-sizing: border-box;
+    max-height: 90vh;
+    overflow-y: auto;
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    color: var(--text);
+    font-size: 18px;
+}
+
+.btn-fechar-modal {
+    background: transparent;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 24px;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.btn-fechar-modal:hover {
+    color: var(--text);
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        transform: translateY(20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
 /* ===== Responsivo ===== */
 
-@media (max-width: 768px) {
+@media (max-width: 960px) {
+    .financeiro-conteudo {
+        grid-template-columns: 1fr;
+    }
+}
 
+@media (max-width: 768px) {
     .grid-form {
         grid-template-columns: 1fr;
     }

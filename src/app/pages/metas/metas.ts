@@ -7,7 +7,7 @@ import { MetasService } from '../../services/metas.service';
 @Component({
   selector: 'app-metas',
   standalone: true,
-  imports: [RouterLink, FormsModule, DatePipe],
+  imports: [FormsModule, DatePipe],
   templateUrl: './metas.html',
   styleUrl: './metas.css',
 })
