@@ -1,70 +1,271 @@
 :host {
     display: block;
     min-height: 100vh;
-    background-color: var(--bg);
-    font-family: 'Inter', sans-serif;
+    background: var(--bg);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    animation: fadeIn 0.6s ease-out;
+    position: relative;
 }
 
+/* ===========================
+   ANIMAÇÕES GLOBAIS
+   =========================== */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes glow {
+    0%, 100% {
+        box-shadow: 0 0 20px rgba(24, 116, 122, 0.3);
+    }
+    50% {
+        box-shadow: 0 0 40px rgba(24, 116, 122, 0.6);
+    }
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% center;
+    }
+    100% {
+        background-position: 200% center;
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes countUp {
+    from {
+        opacity: 0;
+        transform: scale(0.5);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+@keyframes float {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes shine {
+    0% {
+        transform: translateX(-100%) rotate(45deg);
+    }
+    100% {
+        transform: translateX(100%) rotate(45deg);
+    }
+}
+
+/* ===========================
+   CONTAINER PRINCIPAL
+   =========================== */
 .financeiro-container {
-    max-width: 900px;
+    max-width: 1100px;
     margin: 0 auto;
     padding: 32px 24px;
     color: var(--text);
+    animation: fadeIn 0.8s ease-out;
+    position: relative;
+    z-index: 1;
 }
 
+/* Título com gradiente animado usando as cores do tema */
 .financeiro-container h2 {
-    color: var(--text);
-    font-size: 24px;
+    font-size: 28px;
+    font-weight: 700;
+    margin: 0;
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    letter-spacing: -0.5px;
+}
+
+/* ===========================
+   BOTÃO NOVA TRANSAÇÃO
+   =========================== */
+.btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    border: none;
+    padding: 12px 28px;
+    border-radius: 12px;
     font-weight: 600;
-    margin-bottom: 24px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(24, 116, 122, 0.3);
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    letter-spacing: 0.3px;
+}
+
+.btn-primary::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 50%);
+    transform: scale(0);
+    transition: transform 0.6s ease;
+}
+
+.btn-primary:hover::before {
+    transform: scale(1);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 35px rgba(24, 116, 122, 0.4);
+}
+
+.btn-primary:active {
+    transform: scale(0.95);
 }
 
 /* ===== Resumo ===== */
 
 .financeiro-resumo {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
     margin-bottom: 32px;
 }
 
 .card-financeiro {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
-    transition: .3s;
+    border-radius: 16px;
+    padding: 24px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+}
+
+.card-financeiro::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+    pointer-events: none;
 }
 
 .card-financeiro:hover {
-    transform: translateY(-3px);
-    border-color: var(--text-secondary);
+    transform: translateY(-5px) scale(1.02);
+    border-color: var(--primary);
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.12);
 }
 
 .card-financeiro small {
     display: block;
     color: var(--text-secondary);
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    font-size: 12px;
 }
 
 .card-financeiro strong {
     color: var(--text);
-    font-size: 22px;
+    font-size: 26px;
+    display: block;
+    animation: countUp 0.6s ease-out;
+    font-weight: 700;
 }
 
 .card-financeiro.receita {
-    border-left: 5px solid var(--success);
+    border-left: 4px solid #00AA50;
+    background: linear-gradient(135deg, var(--card), rgba(0, 170, 80, 0.05));
+}
+
+.card-financeiro.receita strong {
+    color: #008F4C;
 }
 
 .card-financeiro.despesa {
-    border-left: 5px solid var(--danger);
+    border-left: 4px solid var(--danger);
+    background: linear-gradient(135deg, var(--card), rgba(192, 57, 43, 0.05));
+}
+
+.card-financeiro.despesa strong {
+    color: var(--danger);
 }
 
 .card-financeiro.saldo {
-    border-left: 5px solid var(--primary);
+    border-left: 4px solid var(--primary);
+    background: linear-gradient(135deg, var(--card), rgba(24, 116, 122, 0.05));
 }
 
-/* ===== Layout do Conteúdo Principal (Lista + Dashboard) ===== */
+.card-financeiro.saldo strong {
+    color: var(--primary);
+}
+
+/* ===== Separador ===== */
+
+hr {
+    border: none;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--primary), transparent);
+    margin: 32px 0;
+    border-radius: 2px;
+    opacity: 0.3;
+}
+
+/* ===== Layout do Conteúdo Principal ===== */
 
 .financeiro-conteudo {
     display: grid;
@@ -73,204 +274,109 @@
     align-items: start;
 }
 
-/* ===== Formulário ===== */
-
-.formulario-financeiro {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 24px;
-    display: flex;
-    flex-direction: column;
-    gap: 18px;
-}
-
-.formulario-financeiro h3 {
-    color: var(--text);
-    margin-bottom: 8px;
-}
-
-.grid-form {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 16px;
-}
-
-.campo {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-}
-
-.campo label {
-    color: var(--text-secondary);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-/* ===== Inputs ===== */
-
-.input-field {
-    width: 100%;
-    padding: 12px 16px;
-    background: var(--input-bg);
-    color: var(--text);
-    border: 2px solid var(--input-border);
-    border-radius: 10px;
-    font-size: 14px;
-    font-family: inherit;
-    outline: none;
-    transition: all .25s ease;
-    box-sizing: border-box;
-}
-
-.input-field::placeholder {
-    color: var(--text-secondary);
-}
-
-.input-field:hover {
-    border-color: var(--text-secondary);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, .05);
-}
-
-.input-field:focus {
-    border-color: var(--primary);
-    box-shadow: 0 0 0 4px rgba(24, 116, 122, .18);
-}
-
-select.input-field {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    cursor: pointer;
-    background: var(--input-bg);
-    color: var(--text);
-}
-
-select.input-field option {
-    background: var(--card);
-    color: var(--text);
-}
-
-/* ===== Botões ===== */
-
-.acoes-form {
-    display: flex;
-    gap: 12px;
-    margin-top: 8px;
-}
-
-.btn {
-    border: none;
-    border-radius: 8px;
-    padding: 12px 18px;
-    cursor: pointer;
-    font-weight: 600;
-    transition: .3s;
-}
-
-.btn-primary {
-    background: var(--primary);
-    color: #fff;
-}
-
-.btn-primary:hover {
-    background: linear-gradient(90deg, var(--primary), var(--secondary));
-    transform: translateY(-2px);
-}
-
-.btn-secondary,
-.btn-cancel {
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text);
-}
-
-.btn-secondary:hover {
-    background: var(--primary);
-    border-color: var(--primary);
-    color: #fff;
-}
-
-.btn-cancel:hover {
-    background: var(--secondary);
-    border-color: var(--secondary);
-    color: #fff;
-}
-
-/* ===== Separador ===== */
-
-hr {
-    border: none;
-    height: 1px;
-    background: var(--border);
-    margin: 32px 0;
-}
-
 /* ===== Lista ===== */
+
+.financeiro-lista-container {
+    background: var(--card);
+    border-radius: 16px;
+    border: 1px solid var(--border);
+    padding: 24px;
+    box-shadow: var(--shadow);
+}
 
 .lista-itens h3 {
     color: var(--text);
-    margin: 24px 0 20px;
+    margin: 0 0 20px 0;
+    font-weight: 600;
+    font-size: 18px;
+    letter-spacing: 0.3px;
 }
 
 .lista-itens ul {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 16px;
+    gap: 12px;
     padding: 0;
+    margin: 0;
 }
 
 .item-financeiro {
-    background: var(--card);
+    background: var(--surface);
     border: 1px solid var(--border);
-    border-radius: 10px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 16px 20px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    transition: .3s;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+.item-financeiro::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    border-radius: 12px 0 0 12px;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
 }
 
 .item-financeiro:hover {
-    border-color: var(--text-secondary);
+    border-color: var(--primary);
+    transform: translateX(6px);
+    box-shadow: var(--shadow);
+    background: var(--card);
+}
+
+.item-financeiro:hover::before {
+    opacity: 1;
 }
 
 .info-principal strong {
     color: var(--text);
     display: block;
-    margin-bottom: 6px;
+    margin-bottom: 4px;
+    font-size: 15px;
 }
 
 .info-principal small {
     color: var(--text-secondary);
+    font-size: 12px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background: var(--status-andamento-bg);
+    color: var(--status-andamento-text);
 }
 
 .info-valores-acoes {
     display: flex;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
 }
 
 .texto-receita {
-    color: var(--success);
-    font-weight: bold;
+    color: #008F4C;
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .texto-despesa {
     color: var(--danger);
-    font-weight: bold;
-}
-
-.badge {
-    display: inline-block;
-    padding: 4px 10px;
-    border-radius: 999px;
-    background: var(--status-andamento-bg);
-    color: var(--status-andamento-text);
-    font-size: 12px;
-    font-weight: 600;
+    font-weight: 700;
+    font-size: 15px;
 }
 
 .acoes-lista {
@@ -278,16 +384,56 @@ hr {
     gap: 8px;
 }
 
+.acoes-lista .btn {
+    padding: 6px 14px;
+    font-size: 12px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.btn-secondary {
+    background: rgba(24, 116, 122, 0.1);
+    color: var(--primary);
+}
+
+.btn-secondary:hover {
+    background: rgba(24, 116, 122, 0.2);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 15px rgba(24, 116, 122, 0.2);
+}
+
+.btn-cancel {
+    background: rgba(192, 57, 43, 0.1);
+    color: var(--danger);
+}
+
+.btn-cancel:hover {
+    background: rgba(192, 57, 43, 0.2);
+    transform: translateY(-2px) scale(1.05);
+    box-shadow: 0 4px 15px rgba(192, 57, 43, 0.2);
+}
+
 /* ===== Dashboard / Gráfico Lateral ===== */
 
 .grafico-card {
     background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 10px;
+    border-radius: 16px;
     padding: 24px;
     display: flex;
     flex-direction: column;
     gap: 16px;
+    box-shadow: var(--shadow);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.grafico-card:hover {
+    border-color: var(--primary);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
 }
 
 .grafico-titulo {
@@ -295,115 +441,383 @@ hr {
     font-size: 14px;
     font-weight: 500;
     margin: 0;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
 }
 
 .dashboard-barras {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 .dashboard-stats-resumo {
     display: flex;
     justify-content: space-between;
-    margin-top: 4px;
-    font-size: 12px;
-    color: var(--text-secondary);
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.dashboard-stats-resumo:last-of-type {
+    border-bottom: none;
 }
 
 .stat-item {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 8px;
+    color: var(--text-secondary);
+    font-size: 13px;
+    font-weight: 500;
 }
 
 .ponto-receita {
-    width: 8px;
-    height: 8px;
-    background-color: var(--success);
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, #00AA50, #65E29B);
     border-radius: 50%;
     display: inline-block;
+    animation: pulse 2s ease-in-out infinite;
 }
 
 .ponto-despesa {
-    width: 8px;
-    height: 8px;
-    background-color: var(--danger);
+    width: 10px;
+    height: 10px;
+    background: linear-gradient(135deg, var(--danger), #e74c3c);
     border-radius: 50%;
     display: inline-block;
+    animation: pulse 2s ease-in-out infinite 0.5s;
 }
 
-/* ===== Estilos do Modal (Janela Flutuante Global) ===== */
+.grafico-card strong {
+    font-size: 20px;
+    font-weight: 700;
+}
 
+.grafico-card strong[style*="color: var(--success)"] {
+    color: #008F4C !important;
+}
+
+.grafico-card strong[style*="color: var(--danger)"] {
+    color: var(--danger) !important;
+}
+
+/* ===========================
+   MODAL
+   =========================== */
 .modal-overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100vw;
     height: 100vh;
-    background-color: rgba(0, 0, 0, 0.75);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.7);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
     display: flex;
     justify-content: center;
     align-items: center;
     z-index: 9999;
-    animation: fadeIn 0.2s ease-in-out;
+    animation: modalOverlayIn 0.3s ease-out;
+    padding: 20px;
+}
+
+@keyframes modalOverlayIn {
+    from {
+        opacity: 0;
+        backdrop-filter: blur(0px);
+        -webkit-backdrop-filter: blur(0px);
+    }
+    to {
+        opacity: 1;
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
 }
 
 .modal-content {
-    background-color: var(--card);
+    background: var(--card);
     border: 1px solid var(--border);
-    border-radius: 12px;
+    border-radius: 20px;
     width: 100%;
-    max-width: 550px;
-    padding: 28px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-    animation: slideUp 0.3s ease-out;
-    box-sizing: border-box;
+    max-width: 600px;
+    padding: 0;
+    box-shadow: var(--shadow);
+    animation: modalContentIn 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
     max-height: 90vh;
-    overflow-y: auto;
+    overflow: hidden;
+    position: relative;
 }
 
+/* Barra gradiente animada no topo */
+.modal-content::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, 
+        var(--primary), 
+        var(--secondary), 
+        var(--primary)
+    );
+    background-size: 300% 100%;
+    animation: gradientMove 3s ease infinite;
+    z-index: 10;
+}
+
+@keyframes modalContentIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Cabeçalho da Modal */
 .modal-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 20px;
+    padding: 24px 28px 16px 28px;
+    border-bottom: 1px solid var(--border);
+    background: var(--surface);
+    position: relative;
+    z-index: 5;
 }
 
 .modal-header h3 {
     margin: 0;
     color: var(--text);
-    font-size: 18px;
+    font-size: 20px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    letter-spacing: -0.3px;
 }
 
+.modal-header h3::before {
+    content: '💰';
+    font-size: 22px;
+    animation: float 3s ease-in-out infinite;
+}
+
+/* Botão Fechar Modal */
 .btn-fechar-modal {
     background: transparent;
     border: none;
     color: var(--text-secondary);
     font-size: 24px;
     cursor: pointer;
-    line-height: 1;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+}
+
+.btn-fechar-modal::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--danger);
+    opacity: 0;
+    transform: scale(0.5);
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 
 .btn-fechar-modal:hover {
+    color: #fff;
+    transform: rotate(90deg) scale(1.1);
+}
+
+.btn-fechar-modal:hover::before {
+    opacity: 0.15;
+    transform: scale(1);
+}
+
+.btn-fechar-modal:active {
+    transform: rotate(90deg) scale(0.9);
+}
+
+/* Corpo da Modal */
+.modal-body {
+    padding: 24px 28px 28px 28px;
+}
+
+/* Campos do formulário dentro da modal */
+.campo {
+    margin-bottom: 16px;
+}
+
+.campo:last-of-type {
+    margin-bottom: 20px;
+}
+
+.input-label {
+    color: var(--text-secondary);
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 6px;
+    display: block;
+}
+
+.input-field {
+    background: var(--surface);
+    border: 2px solid var(--border);
+    border-radius: 12px;
+    padding: 12px 16px;
     color: var(--text);
+    font-size: 15px;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
+.input-field::placeholder {
+    color: var(--text-secondary);
+    opacity: 0.7;
 }
 
-@keyframes slideUp {
-    from {
-        transform: translateY(20px);
-        opacity: 0;
-    }
-    to {
-        transform: translateY(0);
-        opacity: 1;
-    }
+.input-field:focus {
+    border-color: var(--primary);
+    background: var(--card);
+    box-shadow: 0 0 0 4px rgba(24, 116, 122, 0.1);
+    transform: scale(1.02);
+    outline: none;
+}
+
+.input-field:hover {
+    border-color: var(--text-secondary);
+}
+
+select.input-field {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23666666' d='M6 8L1 3h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+}
+
+select.input-field option {
+    background: var(--card);
+    color: var(--text);
+    padding: 8px;
+}
+
+/* Grid dentro da modal */
+.grid-form {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* Ações da Modal */
+.acoes-form {
+    display: flex;
+    gap: 12px;
+    justify-content: flex-end;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--border);
+}
+
+.acoes-form .btn {
+    padding: 12px 24px;
+    font-size: 14px;
+    font-weight: 600;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+    position: relative;
+    overflow: hidden;
+    font-family: inherit;
+}
+
+.acoes-form .btn-cancel {
+    background: var(--surface);
+    color: var(--text-secondary);
+    border: 1px solid var(--border);
+}
+
+.acoes-form .btn-cancel:hover {
+    background: rgba(192, 57, 43, 0.1);
+    border-color: var(--danger);
+    color: var(--danger);
+    transform: translateY(-2px);
+}
+
+.acoes-form .btn-primary {
+    background: linear-gradient(135deg, var(--primary), var(--secondary));
+    color: #FFFFFF;
+    box-shadow: 0 4px 20px rgba(24, 116, 122, 0.3);
+}
+
+.acoes-form .btn-primary::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, 
+        rgba(255,255,255,0.2) 0%, 
+        transparent 50%, 
+        rgba(255,255,255,0.1) 100%
+    );
+    transform: translateX(-100%);
+    transition: transform 0.6s ease;
+}
+
+.acoes-form .btn-primary:hover::before {
+    transform: translateX(100%);
+}
+
+.acoes-form .btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 35px rgba(24, 116, 122, 0.4);
+}
+
+.acoes-form .btn-primary:active {
+    transform: scale(0.95);
+}
+
+.acoes-form .btn-primary:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+    transform: none;
+}
+
+/* ===== Scrollbar personalizada ===== */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--bg);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, var(--primary), var(--secondary));
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--primary);
 }
 
 /* ===== Responsivo ===== */
@@ -415,14 +829,28 @@ hr {
 }
 
 @media (max-width: 768px) {
+    .financeiro-container {
+        padding: 20px 16px;
+    }
+
+    .financeiro-container h2 {
+        font-size: 22px;
+    }
+
+    .btn-primary {
+        padding: 10px 20px;
+        font-size: 13px;
+    }
+
     .grid-form {
         grid-template-columns: 1fr;
+        gap: 0;
     }
 
     .item-financeiro {
         flex-direction: column;
         align-items: flex-start;
-        gap: 16px;
+        gap: 12px;
     }
 
     .info-valores-acoes {
@@ -439,11 +867,86 @@ hr {
         flex: 1;
     }
 
+    .modal-content {
+        max-width: 95%;
+        margin: 10px;
+        border-radius: 16px;
+    }
+
+    .modal-header {
+        padding: 20px 20px 16px 20px;
+    }
+
+    .modal-header h3 {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 20px;
+    }
+
     .acoes-form {
         flex-direction: column;
     }
 
     .acoes-form .btn {
         width: 100%;
+    }
+
+    .grafico-card {
+        margin-top: 8px;
+    }
+}
+
+@media (max-width: 480px) {
+    .financeiro-resumo {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .card-financeiro {
+        padding: 16px 20px;
+    }
+
+    .card-financeiro strong {
+        font-size: 22px;
+    }
+
+    .modal-content {
+        max-width: 98%;
+        margin: 5px;
+        border-radius: 14px;
+    }
+
+    .modal-header {
+        padding: 16px 16px 12px 16px;
+    }
+
+    .modal-header h3 {
+        font-size: 16px;
+    }
+
+    .modal-header h3::before {
+        font-size: 18px;
+    }
+
+    .modal-body {
+        padding: 16px;
+    }
+
+    .input-field {
+        font-size: 14px;
+        padding: 10px 14px;
+    }
+
+    .acoes-form .btn {
+        padding: 10px 16px;
+        font-size: 13px;
+    }
+
+    .btn-fechar-modal {
+        width: 34px;
+        height: 34px;
+        font-size: 20px;
     }
 }
