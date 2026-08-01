@@ -38,10 +38,8 @@
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 8px;
-    background: linear-gradient(135deg, var(--primary), var(--secondary));
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+   
+    
     animation: float 3s ease-in-out infinite;
 }
 

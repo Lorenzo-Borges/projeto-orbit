@@ -28,7 +28,7 @@ body {
 body[data-theme="light"] {
 
     /* Fundo */
-    --bg: #F7F8FA;
+    --bg: #FFF;
     --surface: #FDFDFD;
     --card: #FFFFFF;
     --sidebar: #FFFFFF;
